@@ -22,7 +22,7 @@ import { ExpandMore, AssuredWorkload, ArrowForward } from '@mui/icons-material';
 
 //dependencias CSS
 import './css/EleccionMalla.css';
-import { Facultad } from './models/facultad';
+import { Facultad } from './models/facultades/facultad';
 
 //control de apertura y cierra de los card de acordiones
 

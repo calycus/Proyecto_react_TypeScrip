@@ -1,0 +1,31 @@
+.css-46bh2p-MuiCardContent-root {
+    padding: 5px !important;
+}
+
+.css-185gdzj-MuiCardHeader-root {
+    padding: 5px 10px 5px 10px !important;
+}
+
+.css-1qvr50w-MuiTypography-root {
+    font-family: system-ui !important;
+    font-weight: bold !important;
+    font-size: 12px !important;
+}
+
+.css-9mgopn-MuiDivider-root {
+    margin: 0;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    border-width: 0px;
+    border-style: solid;
+    border-color: rgb(0 0 0 / 40%) !important;
+    border-bottom-width: thin;
+}
+.css-1jmjcem {
+    padding: 0rem 1rem 1rem 1rem !important;
+}
+
+.selectContainer {
+    display: flex;
+}

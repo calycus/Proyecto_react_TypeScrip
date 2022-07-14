@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { Malla } from "../../models/facultades/facultad";
 import ApiUrl from '../ApiUrl';
 
 export const traerMallasPorId = createSlice({
     name: 'arrayMallas',
     initialState: {
-        value: [],
+        value: [] as Malla[],
     },
 
     reducers: {
@@ -15,7 +16,7 @@ export const traerMallasPorId = createSlice({
     }
 })
 
-export const traerMallasPorIdEscuelaAsync = (id_escuela) => (dispatch) => {
+export const traerMallasPorIdEscuelaAsync = (id_escuela:number) => (dispatch:any) => {
     axios.get(ApiUrl.Api + '/api/general/escuela/mallas/' + id_escuela, {
         headers: {},
     })
@@ -26,5 +27,5 @@ export const traerMallasPorIdEscuelaAsync = (id_escuela) => (dispatch) => {
 
 
 export const { setMallas } = traerMallasPorId.actions;
-export const selectArrayMallas = (state) => state.arrayMallas.value;
+export const selectArrayMallas = (state:any) => state.arrayMallas.value;
 export default traerMallasPorId.reducer;

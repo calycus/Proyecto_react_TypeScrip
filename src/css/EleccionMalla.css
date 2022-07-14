@@ -1,0 +1,117 @@
+.titulo {
+    text-align: center;
+    font-size: 2.1rem;
+    font-weight: bold;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+}
+
+.grid-mallas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 350px);
+    gap: 1rem;
+    justify-content: center;
+}
+
+.card-facultad {
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    align-items: center;
+    min-height: 130px;
+    align-self: flex-start;
+}
+
+.card-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    padding: .5rem;
+    cursor: pointer;
+}
+
+.div-name-facultad {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    padding-left: .5rem;
+}
+
+.div-select-malla {
+    display: grid;
+    grid-auto-flow: column;
+}
+
+.div-name-select-malla {
+    padding-right: 3rem;
+    padding-bottom: 0.5rem;
+}
+
+.arrowFowar-class {
+    margin-left: 10px !important
+}
+
+.css-wondbr-MuiPaper-root-MuiAccordion-root.Mui-expanded {
+    margin: 0px !important;
+}
+
+.css-15v22id-MuiAccordionDetails-root {
+    padding: 4px 0px 4px !important;
+}
+
+.css-15v22id-MuiAccordionDetails-root {
+    padding: 2px 7px 2px 18px !important;
+}
+
+.css-6bxxch-MuiPaper-root-MuiAccordion-root.Mui-expanded {
+    margin: 0 !important;
+}
+
+.css-o4b71y-MuiAccordionSummary-content {
+    margin: 5px !important;
+}
+
+.MuiAccordionDetails-root.css-15v22id-MuiAccordionDetails-root {
+    font-size: .78rem !important;
+}
+
+.MuiCollapse-wrapperInner.MuiCollapse-vertical.css-9l5vo-MuiCollapse-wrapperInner {
+    font-weight: 550 !important;
+}
+
+.css-o4b71y-MuiAccordionSummary-content {
+    margin: 0px 5px !important;
+    /* margin-left: 5px !important; */
+    /* margin-right: 5px !important; */
+}
+
+.MuiAccordionSummary-content.MuiAccordionSummary-contentGutters.css-o4b71y-MuiAccordionSummary-content {
+    font-size: .80rem !important;
+    font-weight: 650 !important;
+    color: #004600;
+}
+
+.css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root {
+    padding: 0px !important;
+    min-height: 35px !important;
+}
+
+.css-i4bv87-MuiSvgIcon-root {
+    align-self: center;
+    font-size: 1.3rem !important;
+    color: #004600;
+}
+
+.css-5qqpcr-MuiDivider-root {
+    margin: 0;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    border-width: 1px !important;
+    border-style: solid;
+    border-color: #004600 !important;
+    border-bottom-width: thin;
+    margin: 8px;
+}

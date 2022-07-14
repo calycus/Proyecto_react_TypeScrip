@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { Facultad, Malla } from "../../models/facultad";
+import { Facultad, Malla } from "../../models/facultades/facultad";
 import ApiUrl from '../ApiUrl';
 
 

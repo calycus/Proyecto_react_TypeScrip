@@ -15,7 +15,7 @@ export const TraerPeriodos = createSlice({
     }
 })
 
-export const traerPeriodosPorIdMallaAsync = (id_malla) => (dispatch) => {
+export const traerPeriodosPorIdMallaAsync = (id_malla:number) => (dispatch:any) => {
     axios.get(ApiUrl.Api + '/api/general/periodos_por_malla/excluido_ultimo_periodo/' + id_malla, {
         headers: {},
     })
@@ -26,5 +26,5 @@ export const traerPeriodosPorIdMallaAsync = (id_malla) => (dispatch) => {
 
 
 export const { setArrayPeriodos } = TraerPeriodos.actions;
-export const selectArrayPeriodos = (state) => state.arrayPeriodos.arrayPeriodosPorId;
+export const selectArrayPeriodos = (state:any) => state.arrayPeriodos.arrayPeriodosPorId;
 export default TraerPeriodos.reducer;

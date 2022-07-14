@@ -1,31 +1,36 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import Periodo from "../../../models/facultades/periodo";
 import ApiUrl from '../../ApiUrl';
+
+interface data{
+    y:number
+}
 
 export const traerInfo = createSlice({
     name: 'HighchartLineGeneral',
     initialState: {
         LineDependienteGeneral: {
-            categories: [],
+            categories: [] as string[],
             series: [
                 {
                     // configuración de las series
                     name: "Tasa de Retencion",
-                    data: [],
+                    data: [] as data[],
                 },
                 {
                     name: "Tasa de Deserción",
-                    data: [],
+                    data: [] as data[],
                 },
             ],
-        },
+        }, 
         LineIndependienteGeneral: {
-            categories: [],
+            categories: [] as string[],
             series: [
                 {
                     // configuración de las series
                     name: "Tasa de Repitencia",
-                    data: [],
+                    data: [] as data[],
                 }
             ],
         },
@@ -37,22 +42,23 @@ export const traerInfo = createSlice({
             state.LineDependienteGeneral.categories = [];
             state.LineDependienteGeneral.series[0].data = [];
             state.LineDependienteGeneral.series[1].data = [];
-            data.array_periodos_de_interes.forEach(element => {
+
+            data.array_periodos_de_interes.forEach((element:Periodo) => {
                 state.LineDependienteGeneral.categories.push(
                     element.abreviatura
                 );
             });
-            data.array_indices_desercion_to_response.forEach(element => {
+            data.array_indices_desercion_to_response.forEach((element:number) => {
                 state.LineDependienteGeneral.series[0].data.push(
                     {
-                        y: parseFloat(element, 2)
+                        y: element
                     }
                 );
             });
-            data.array_indices_retencion_to_response.forEach(element => {
+            data.array_indices_retencion_to_response.forEach((element:number) => {
                 state.LineDependienteGeneral.series[1].data.push(
                     {
-                        y: parseFloat(element, 2)
+                        y: element
                     }
                 );
             });
@@ -62,15 +68,15 @@ export const traerInfo = createSlice({
             let data = action.payload
             state.LineIndependienteGeneral.categories = [];
             state.LineIndependienteGeneral.series[0].data = [];
-            data.array_periodos_de_interes.forEach(element => {
+            data.array_periodos_de_interes.forEach((element:Periodo) => {
                 state.LineIndependienteGeneral.categories.push(
                     element.abreviatura
                 );
             });
-            data.array_indices_repitencia_to_response.forEach(element => {
+            data.array_indices_repitencia_to_response.forEach((element:number) => {
                 state.LineIndependienteGeneral.series[0].data.push(
                     {
-                        y: parseFloat(element, 2)
+                        y:element
                     }
                 );
             });
@@ -78,7 +84,7 @@ export const traerInfo = createSlice({
     }
 })
 
-export const traerInfoGeneralAsync = (id_Malla) => (dispatch) => {
+export const traerInfoGeneralAsync = (id_Malla:number) => (dispatch:any) => {
     axios.get(ApiUrl.Api + '/api/educacion/dash_general/indices/' + id_Malla, {
         headers: {
             Authorization: "Bearer " + ApiUrl.userToken,
@@ -93,6 +99,6 @@ export const traerInfoGeneralAsync = (id_Malla) => (dispatch) => {
 
 
 export const { setInfoDependienteGeneral, setInfoIndependienteGeneral } = traerInfo.actions;
-export const selectLineDependienteGeneral = (state) => state.HighchartLineGeneral.LineDependienteGeneral;
-export const selectLineIndependienteGeneral = (state) => state.HighchartLineGeneral.LineIndependienteGeneral;
+export const selectLineDependienteGeneral = (state:any) => state.HighchartLineGeneral.LineDependienteGeneral;
+export const selectLineIndependienteGeneral = (state:any) => state.HighchartLineGeneral.LineIndependienteGeneral;
 export default traerInfo.reducer;

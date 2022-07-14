@@ -1,0 +1,36 @@
+.css-1869usk-MuiFormControl-root {
+    min-width: 382px !important;
+}
+
+.css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.MuiSelect-select {
+    display: flex !important;
+    align-items: center !important;
+    min-height: 2.4375em !important;
+    text-overflow: ellipsis;
+    font-size: 13px !important;
+    white-space: normal !important;
+}
+
+.css-1in441m {
+    width: 32% !important;
+}
+
+/* ccs que controla es aspecto del contenido del select */
+.css-1kgz8o4-MuiButtonBase-root-MuiMenuItem-root {
+    font-size: 14px !important;
+}
+
+.css-b7ejb2-MuiFormControl-root {
+    margin: 15px !important;
+}
+
+.css-mf1cb5-MuiButtonBase-root-MuiIconButton-root {
+    border-radius: 0% !important;
+}
+/* .css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
+    min-width: 340px !important;
+} */
+.css-sck0t1-MuiFormControl-root{
+    min-width: 430px !important;
+    max-width: 700px !important;
+}
