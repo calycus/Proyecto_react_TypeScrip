@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { dataGraphicMultiMalla, graficoMultiMalla, graphicMultiMalla } from "../../../models/dashboardGeneral";
 import ApiUrl from '../../ApiUrl';
 
 export const traerInfo = createSlice({
@@ -13,27 +14,27 @@ export const traerInfo = createSlice({
                     data: [],
                 },
             ],
-        },
+        } as graphicMultiMalla,
 
         pieIndiceGeneralDesercionFacultad: {
             series: [
                 {
                     name: "Tasa de Desercion",
                     colorByPoint: true,
-                    data: [],
+                    data: [] as dataGraphicMultiMalla[],
                 },
             ],
-        },
+        } as graphicMultiMalla,
 
         pieIndiceGeneralRetencionFacultad: {
             series: [
                 {
                     name: "Tasa de Retencion",
                     colorByPoint: true,
-                    data: [],
+                    data: [] as dataGraphicMultiMalla[],
                 },
             ],
-        },
+        } as graphicMultiMalla,
     },
 
     reducers: {
@@ -49,19 +50,19 @@ export const traerInfo = createSlice({
             let totalDesercion = 0;
             let totalRepitencia = 0;
 
-            data.forEach((elementoIndiceGeneral) => {
+            data.forEach((elementoIndiceGeneral:graficoMultiMalla) => {
                 totalRetencion += elementoIndiceGeneral.indice_retencion;
                 totalDesercion += elementoIndiceGeneral.indice_desercion;
                 totalRepitencia += elementoIndiceGeneral.indice_repitencia;
             });
             //grafico tipo pie que muestra el indice de las tasas de interes por facultad
-            data.forEach((elementoIndiceGeneral) => {
+            data.forEach((elementoIndiceGeneral:graficoMultiMalla) => {
                 if (elementoIndiceGeneral.indice_repitencia == 0) {
                     return;
                 } else {
                     //tasa de Repitencia
                     state.pieIndiceGeneralRepitenciaFacultad.series[0].data.push({
-                        name: elementoIndiceGeneral.escuela,
+                        name: elementoIndiceGeneral.escuela ,
                         y: elementoIndiceGeneral.indice_repitencia,
                         porcentaje:
                             (elementoIndiceGeneral.indice_repitencia / totalRepitencia) *
@@ -97,7 +98,7 @@ export const traerInfo = createSlice({
     }
 })
 
-export const traerInfoFenomenosAsync = (id_facultad) => (dispatch) => {
+export const traerInfoFenomenosAsync = (id_facultad:number) => (dispatch:any) => {
     axios.get(ApiUrl.Api + '/api/educacion/dash_general/tablas_graficos_multimallas/' + id_facultad, {
         headers: {
             Authorization: "Bearer " + ApiUrl.userToken,
@@ -110,7 +111,7 @@ export const traerInfoFenomenosAsync = (id_facultad) => (dispatch) => {
 
 
 export const { setIndicesFenomenos } = traerInfo.actions;
-export const selectpieIndiceRepitencia = (state) => state.PieFenomenosGeneral.pieIndiceGeneralRepitenciaFacultad;
-export const selectpieIndiceDesercion = (state) => state.PieFenomenosGeneral.pieIndiceGeneralDesercionFacultad;
-export const selectpieIndiceRetencion = (state) => state.PieFenomenosGeneral.pieIndiceGeneralRetencionFacultad;
+export const selectpieIndiceRepitencia = (state:any) => state.PieFenomenosGeneral.pieIndiceGeneralRepitenciaFacultad;
+export const selectpieIndiceDesercion = (state:any) => state.PieFenomenosGeneral.pieIndiceGeneralDesercionFacultad;
+export const selectpieIndiceRetencion = (state:any) => state.PieFenomenosGeneral.pieIndiceGeneralRetencionFacultad;
 export default traerInfo.reducer;

@@ -17,9 +17,9 @@ import { selectArrayPeriodos, traerPeriodosPorIdMallaAsync } from '../store/Peri
 ///DsGeneral
 import { traerInfoGeneralAsync } from '../store/HighchartStore/DashboardGeneral/HighchartStoreGeneral'
 
-/* ///Retencion
+///Retencion
 import { traerInfoRetencionAsync } from '../store/HighchartStore/DashboardRetencion/HighchartStoreRetencion'
-
+/*
 ///Repitencia
 import { traerInfoRepitenciaAsync, setArrayPeriodosDeInteres } from '../store/HighchartStore/DashboardRepitencia/TasaDeRepitencia/HighchartStoreRepitenciaGeneral';
 import { traerInfoRepitenciaColumnTopAsync } from '../store/HighchartStore/DashboardRepitencia/TasaDeRepitencia/HighchartStoreRepitenciaColumnTopMaterias';
@@ -63,8 +63,8 @@ let Metodologia = [
 
 //interfaces de datos
 interface MallaAux {
-    idEscuela: Number,
-    idMalla: Number
+    idEscuela: number,
+    idMalla: number
 }
 
 
@@ -270,14 +270,14 @@ export default {
 }
 
 const SearchButton = ({ dispatch, sampleLocation, PeriodosDeInteres, PeriodoSelected }:
-    { dispatch: any, sampleLocation: any, PeriodosDeInteres: Periodo[], PeriodoSelected:Periodo[] }) => {
+    { dispatch: any, sampleLocation: any, PeriodosDeInteres: Periodo[], PeriodoSelected: Periodo[] }) => {
     if (sampleLocation.pathname == "/general") {
         dispatch(traerInfoGeneralAsync(mallaAux.idMalla))
 
-    } /* else if (sampleLocation.pathname == "/tasa_retencion") {
+    } else if (sampleLocation.pathname == "/tasa_retencion") {
         dispatch(traerInfoRetencionAsync(mallaAux.idMalla))
 
-    } else if (sampleLocation.pathname == "/tasa_repitencia") {
+    } /* else if (sampleLocation.pathname == "/tasa_repitencia") {
         if (PeriodosDeInteres.length == 0) {
             return
         } else {

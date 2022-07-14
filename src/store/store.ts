@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
-//import ArrayMallasReducer from './MallaStore/Mallas'
+import ArrayMallasReducer from './MallaStore/Mallas'
 import ArrayFacultadesReducer from './MallaStore/EleccionMallaStore'
-/* import ArrayPeriodosPorIdMalla from './PeriodosStore/Periodos'
+import ArrayPeriodosPorIdMalla from './PeriodosStore/Periodos'
 
 //store Highchart General
 import HighchartLineGeneral from './HighchartStore/DashboardGeneral/HighchartStoreGeneral'
@@ -9,7 +9,7 @@ import PieFenomenosGeneral from './HighchartStore/DashboardGeneral/HighchartFeno
 
 //store Highchart DS Retencion
 import HighchartRetencion from './HighchartStore/DashboardRetencion/HighchartStoreRetencion'
-
+/* 
 //store Highchart DS Repitencia
 import HighchartRepitencia from './HighchartStore/DashboardRepitencia/TasaDeRepitencia/HighchartStoreRepitenciaGeneral'
 import HighchartRepitenciaColumnTop from './HighchartStore/DashboardRepitencia/TasaDeRepitencia/HighchartStoreRepitenciaColumnTopMaterias'
@@ -34,9 +34,9 @@ import HighchartDesercionFactorGeografico from './HighchartStore/DashboardDeserc
  */
 export default configureStore({
   reducer: {
-    //arrayMallas: ArrayMallasReducer,
+    arrayMallas: ArrayMallasReducer,
     arrayFacultades: ArrayFacultadesReducer,
-   /*  arrayPeriodos: ArrayPeriodosPorIdMalla,
+    arrayPeriodos: ArrayPeriodosPorIdMalla,
 
     //store Highchart DS General
     HighchartLineGeneral: HighchartLineGeneral,
@@ -44,27 +44,27 @@ export default configureStore({
 
     //store Highchart DS Retencion
     HighchartRetencion: HighchartRetencion,
-
-    //store Highchart DS Repitencia
-    HighchartRepitencia: HighchartRepitencia,
-    HighchartRepitenciaColumnTop: HighchartRepitenciaColumnTop,
-    ////store Highchart DS Repitencia => Repitencia Por Materia
-    ListTableRepitenciaPorMateria: ListTableRepitenciaPorMateria,
-    HighchartStoreRepitenciaPorMateria: HighchartStoreRepitenciaPorMateria,
-    ////store Highchart DS Repitencia => Metadata
-    HighchartRepitenciaFactorEconomico: HighchartRepitenciaFactorEconomico,
-    HighchartRepitenciaFactorEdnico: HighchartRepitenciaFactorEdnico,
-    HighchartRepitenciaFactorGeografico: HighchartRepitenciaFactorGeografico,
-
-    //store Highchart DS Desercion
-    HighchartDesercionGeneral: HighchartDesercionGeneral,
-    HighchartDesercionGenerosEdadEmbarazo: HighchartDesercionGenerosEdadEmbarazo,
-    ////store Highchart DS Desercion => Prediccion
-    ListTableEstudiantesPrediccion:ListTableEstudiantesPrediccion,
-    HighchartStoreInfoPrediccionDesercion:HighchartStoreInfoPrediccionDesercion,
-    ////store Highchart DS Desercion => Metadata
-    HighchartDesercionFactorEconomico: HighchartDesercionFactorEconomico,
-    HighchartDesercionFactorEdnico: HighchartDesercionFactorEdnico,
-    HighchartDesercionFactorGeografico: HighchartDesercionFactorGeografico */
+    /*
+      //store Highchart DS Repitencia
+      HighchartRepitencia: HighchartRepitencia,
+      HighchartRepitenciaColumnTop: HighchartRepitenciaColumnTop,
+      ////store Highchart DS Repitencia => Repitencia Por Materia
+      ListTableRepitenciaPorMateria: ListTableRepitenciaPorMateria,
+      HighchartStoreRepitenciaPorMateria: HighchartStoreRepitenciaPorMateria,
+      ////store Highchart DS Repitencia => Metadata
+      HighchartRepitenciaFactorEconomico: HighchartRepitenciaFactorEconomico,
+      HighchartRepitenciaFactorEdnico: HighchartRepitenciaFactorEdnico,
+      HighchartRepitenciaFactorGeografico: HighchartRepitenciaFactorGeografico,
+  
+      //store Highchart DS Desercion
+      HighchartDesercionGeneral: HighchartDesercionGeneral,
+      HighchartDesercionGenerosEdadEmbarazo: HighchartDesercionGenerosEdadEmbarazo,
+      ////store Highchart DS Desercion => Prediccion
+      ListTableEstudiantesPrediccion:ListTableEstudiantesPrediccion,
+      HighchartStoreInfoPrediccionDesercion:HighchartStoreInfoPrediccionDesercion,
+      ////store Highchart DS Desercion => Metadata
+      HighchartDesercionFactorEconomico: HighchartDesercionFactorEconomico,
+      HighchartDesercionFactorEdnico: HighchartDesercionFactorEdnico,
+      HighchartDesercionFactorGeografico: HighchartDesercionFactorGeografico */
   },
 })

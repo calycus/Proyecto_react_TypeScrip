@@ -1,0 +1,32 @@
+.BorderLinearTextContents {
+    background-color: #fff !important;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+    line-height: 15px;
+    min-height: 12px;
+    font-weight: normal;
+    color: black;
+    vertical-align: baseline;
+}
+
+.cardIndiceDeRetencionPorMalla {
+    display: grid;
+    padding: 0.5rem;
+}
+
+.BoxContentsCircularProgress{
+    justify-content: space-around;
+    margin-bottom: 1.5rem;
+}
+
+.ButtonIndiceDeRetencion{
+    min-width: 10rem;
+    max-width: fit-content;
+    -webkit-text-stroke-width: thin;
+}
+
+.ButtonTextIndiceDeRetencion{
+    font-size: 0.9rem !important;
+    text-transform: capitalize !important;
+}

@@ -15,15 +15,19 @@ import { selectArrayMallas, traerMallasPorIdEscuelaAsync } from '../../store/Mal
 import { traerInfoGeneralAsync } from '../../store/HighchartStore/DashboardGeneral/HighchartStoreGeneral'
 import { traerInfoFenomenosAsync } from '../../store/HighchartStore/DashboardGeneral/HighchartFenomenos'
 
-//dependencias CSS
+//dependencias
 import './Dashboard_General.css'
+import { Malla } from '../../models/facultades/facultad';
 
 export default function OutlinedCard() {
-    const id_escuela:number = useSelector(selectIdEscuela);
-    const id_malla:number = useSelector(selectIdMalla);
-    const id_facultad:number = useSelector(selectIdFacultad)
-    const mallas = useSelector(selectArrayMallas);
-    const dispatch:any = useDispatch();
+    const id_escuela: number = useSelector(selectIdEscuela);
+    const id_malla: number = useSelector(selectIdMalla);
+    const id_facultad: number = useSelector(selectIdFacultad)
+    const mallas: Malla[] = useSelector(selectArrayMallas);
+    const dispatch: any = useDispatch();
+    
+    console.log(mallas);
+    
 
     React.useEffect(() => {
         dispatch(traerMallasPorIdEscuelaAsync(id_escuela))

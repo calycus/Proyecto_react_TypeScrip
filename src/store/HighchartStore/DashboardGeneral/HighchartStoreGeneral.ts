@@ -1,39 +1,36 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { graficoDependienteAndIndependiente } from "../../../models/dashboardGeneral";
 import Periodo from "../../../models/facultades/periodo";
 import ApiUrl from '../../ApiUrl';
-
-interface data{
-    y:number
-}
 
 export const traerInfo = createSlice({
     name: 'HighchartLineGeneral',
     initialState: {
         LineDependienteGeneral: {
-            categories: [] as string[],
+            categories: [],
             series: [
                 {
                     // configuración de las series
                     name: "Tasa de Retencion",
-                    data: [] as data[],
+                    data: [],
                 },
                 {
                     name: "Tasa de Deserción",
-                    data: [] as data[],
+                    data: [],
                 },
             ],
-        }, 
+        } as graficoDependienteAndIndependiente, 
         LineIndependienteGeneral: {
-            categories: [] as string[],
+            categories: [],
             series: [
                 {
                     // configuración de las series
                     name: "Tasa de Repitencia",
-                    data: [] as data[],
+                    data: [],
                 }
             ],
-        },
+        } as graficoDependienteAndIndependiente,
     },
 
     reducers: {

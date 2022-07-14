@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { LineRetencionPormalla, ColumnGraduadosPorGenero, ColumnRetencionPorRangoDeEdad } from "../../../models/dashboardRetencion";
 import ApiUrl from '../../ApiUrl';
 
 export const traerInfo = createSlice({
@@ -13,7 +14,7 @@ export const traerInfo = createSlice({
                     data: [],
                 },
             ],
-        },
+        } as LineRetencionPormalla,
 
         ColumnGraduadosPorGenero: {
 
@@ -35,7 +36,7 @@ export const traerInfo = createSlice({
                     data: [],
                 },
             ],
-        },
+        } as ColumnGraduadosPorGenero,
 
         ColumnRetencionPorRangoDeEdad: {
             total_edad_rango: 0,
@@ -43,7 +44,7 @@ export const traerInfo = createSlice({
             total_edad_rango_2: 0,
             total_edad_rango_3: 0,
             total_edad_rango_4: 0,
-            
+
             series: [
                 {
                     name: "Desercion Por Rango De Edad",
@@ -51,7 +52,7 @@ export const traerInfo = createSlice({
                     data: [],
                 },
             ],
-        },
+        } as ColumnRetencionPorRangoDeEdad,
     },
 
     reducers: {
@@ -62,7 +63,7 @@ export const traerInfo = createSlice({
             state.LineRetencionPormalla.categories = [];
             state.LineRetencionPormalla.series[0].data = [];
 
-            data.forEach(element => {
+            data.forEach((element: any) => {
                 state.LineRetencionPormalla.categories.push(
                     element.periodo.abreviatura
                 );
@@ -72,29 +73,29 @@ export const traerInfo = createSlice({
                 state.LineRetencionPormalla.series[0].data.push({
                     name: element.abreviatura,
                     label: element.abreviatura,
-                    y: parseFloat(element.indice.toFixed(2), 2),
+                    y: element.indice,
                 });
             });
 
         },
 
-        setColumnGraduados: (state, action) => {
+        setColumnGraduados: (state: any, action: any) => {
             let data = action.payload
 
             state.ColumnGraduadosPorGenero.series[0].data = [];
 
             //data Retencion
-            let totalIndices = 0;
-            let promedio = 0;
-            let totalDeInscritos = 0;
-            let totalDeGraduados = 0;
-            let totalDeRetenidos = 0;
-            let totalDeGraduadosHombres = 0;
-            let totalDeGraduadosMujeres = 0;
-            let porcentajeDeGraduadosHombres = 0;
-            let porcentajeDeGraduadosMujeres = 0;
+            let totalIndices: number = 0;
+            let promedio: any = 0;
+            let totalDeInscritos: number = 0;
+            let totalDeGraduados: number = 0;
+            let totalDeRetenidos: number = 0;
+            let totalDeGraduadosHombres: number = 0;
+            let totalDeGraduadosMujeres: number = 0;
+            let porcentajeDeGraduadosHombres: number = 0;
+            let porcentajeDeGraduadosMujeres: number = 0;
 
-            data.forEach(elementoRetencion => {
+            data.forEach((elementoRetencion: any) => {
                 //calculo de indice y total de estudiantes
                 //calculo del total de estudiantes retenidos de los ultimos 6 periodos vigentes de una malla
                 totalDeRetenidos =
@@ -146,13 +147,13 @@ export const traerInfo = createSlice({
                 (totalDeRetenidos * 100) /
                 totalDeInscritos
             ).toFixed(2);
-            
+
             //asignacion de variable en porcentage con base 1/1
             state.ColumnGraduadosPorGenero.porcentajeDeEstudiantesGradudados =
                 state.ColumnGraduadosPorGenero.totalDeEstudiantesGradudados / 100;
             state.ColumnGraduadosPorGenero.porcentajeDeEstudiantesRetenidos =
                 state.ColumnGraduadosPorGenero.totalDeEstudiantesRetenidos / 100;
-                
+
             //asignacion de variable total de graduados por genero
             porcentajeDeGraduadosHombres =
                 (totalDeGraduadosHombres * 100) / totalDeGraduados;
@@ -164,7 +165,7 @@ export const traerInfo = createSlice({
             //pusheo de datos para grafico de Graduados por genero
             let graduadosHombres = {
                 name: "Hombres",
-                y: parseFloat(porcentajeDeGraduadosHombres, 2),
+                y: porcentajeDeGraduadosHombres,
                 cantidad: parseInt(state.totalDeEstudiantesGradudadosHombres),
             };
 
@@ -174,7 +175,7 @@ export const traerInfo = createSlice({
 
             let graduadosMujeres = {
                 name: "Mujeres",
-                y: parseFloat(porcentajeDeGraduadosMujeres, 2),
+                y: porcentajeDeGraduadosMujeres,
                 cantidad: parseInt(state.totalDeEstudiantesGradudadosMujeres),
             };
 
@@ -183,17 +184,17 @@ export const traerInfo = createSlice({
             );
         },
 
-        setColumnRangoDeEdad: (state, action) => {
+        setColumnRangoDeEdad: (state: any, action: any) => {
             let data = action.payload
 
-            let tot_edad_rango_1 = 0;
-            let tot_edad_rango_2 = 0;
-            let tot_edad_rango_3 = 0;
-            let tot_edad_rango_4 = 0;
+            let tot_edad_rango_1: number = 0;
+            let tot_edad_rango_2: number = 0;
+            let tot_edad_rango_3: number = 0;
+            let tot_edad_rango_4: number = 0;
 
             state.ColumnRetencionPorRangoDeEdad.series[0].data = [];
 
-            data.forEach(elementoRetencion => {
+            data.forEach((elementoRetencion: any) => {
                 //calculo de los rangos de edad
                 tot_edad_rango_1 =
                     tot_edad_rango_1 +
@@ -219,11 +220,11 @@ export const traerInfo = createSlice({
                 tot_edad_rango_2 +
                 tot_edad_rango_3 +
                 tot_edad_rango_4;
-                
+
             //pusheo de datos para grafico de Graduados por genero
             let rangoDeEdad1 = {
                 name: "DE 18 A 25 AÑOS",
-                y: parseInt(tot_edad_rango_1),
+                y: tot_edad_rango_1,
             };
 
             state.ColumnRetencionPorRangoDeEdad.series[0].data.push(
@@ -232,7 +233,7 @@ export const traerInfo = createSlice({
 
             let rangoDeEdad2 = {
                 name: "DE 26 A 35 AÑOS",
-                y: parseInt(tot_edad_rango_2),
+                y: tot_edad_rango_2,
             };
 
             state.ColumnRetencionPorRangoDeEdad.series[0].data.push(
@@ -241,7 +242,7 @@ export const traerInfo = createSlice({
 
             let rangoDeEdad3 = {
                 name: "DE 36 A 45 AÑOS",
-                y: parseInt(tot_edad_rango_3),
+                y: tot_edad_rango_3,
             };
 
             state.ColumnRetencionPorRangoDeEdad.series[0].data.push(
@@ -250,7 +251,7 @@ export const traerInfo = createSlice({
 
             let rangoDeEdad4 = {
                 name: "DE 46 EN ADELANTE",
-                y: parseInt(tot_edad_rango_4),
+                y: tot_edad_rango_4,
             };
 
             state.ColumnRetencionPorRangoDeEdad.series[0].data.push(
@@ -261,7 +262,7 @@ export const traerInfo = createSlice({
     }
 })
 
-export const traerInfoRetencionAsync = (id_Malla) => (dispatch) => {
+export const traerInfoRetencionAsync = (id_Malla: number) => (dispatch: any) => {
     axios.get(ApiUrl.Api + '/api/educacion/tasa_retencion/principal/general_indices/' + id_Malla, {
         headers: {
             Authorization: "Bearer " + ApiUrl.userToken,
@@ -277,7 +278,7 @@ export const traerInfoRetencionAsync = (id_Malla) => (dispatch) => {
 
 
 export const { setLineRetencion, setColumnGraduados, setColumnRangoDeEdad } = traerInfo.actions;
-export const selectLineRetencionPormalla = (state) => state.HighchartRetencion.LineRetencionPormalla;
-export const selectColumnGraduadosPorGenero = (state) => state.HighchartRetencion.ColumnGraduadosPorGenero;
-export const selectColumnRetencionPorRangoDeEdad = (state) => state.HighchartRetencion.ColumnRetencionPorRangoDeEdad;
+export const selectLineRetencionPormalla = (state: any) => state.HighchartRetencion.LineRetencionPormalla;
+export const selectColumnGraduadosPorGenero = (state: any) => state.HighchartRetencion.ColumnGraduadosPorGenero;
+export const selectColumnRetencionPorRangoDeEdad = (state: any) => state.HighchartRetencion.ColumnRetencionPorRangoDeEdad;
 export default traerInfo.reducer;
