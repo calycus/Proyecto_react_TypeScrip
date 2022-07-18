@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { ColumnDesercionPorEdad, ColumnDesercionPorGenero, PieDesercionPorMaternidad, seriesDataPieDesercionPorMaternidad } from "../../../../models/desercion/dashboardDesercion";
 import ApiUrl from '../../../ApiUrl';
 
 export const traerInfo = createSlice({
@@ -14,7 +15,7 @@ export const traerInfo = createSlice({
                     data: [],
                 },
             ],
-        },
+        } as PieDesercionPorMaternidad,
 
         ColumnDesercionPorEdad: {
             series: [
@@ -24,7 +25,7 @@ export const traerInfo = createSlice({
                     data: [],
                 },
             ],
-        },
+        } as ColumnDesercionPorEdad,
 
         ColumnDesercionPorGenero: {
             series: [
@@ -34,7 +35,7 @@ export const traerInfo = createSlice({
                     data: [],
                 },
             ],
-        }
+        } as ColumnDesercionPorGenero
     },
 
     reducers: {
@@ -48,7 +49,7 @@ export const traerInfo = createSlice({
 
             let ObjetoDesercionPorMaternidad = {
                 name: "No Desertoras",
-                y: parseInt(totalNoDesertoras),
+                y: totalNoDesertoras,
                 sliced: true,
                 selected: true,
             };
@@ -60,6 +61,8 @@ export const traerInfo = createSlice({
             ObjetoDesercionPorMaternidad = {
                 name: "Desertoras",
                 y: parseInt(data.TotDesertorasEmbarazadas),
+                sliced: false,
+                selected: false,
             };
 
             state.PieDesercionPorMaternidad.series[0].data.push(
@@ -126,7 +129,7 @@ export const traerInfo = createSlice({
 
             let desercionHombres = {
                 name: "Hombres",
-                y: parseFloat(porcentajeTotalDeHombres, 2),
+                y: porcentajeTotalDeHombres,
                 cantidad: parseInt(data.TotHombres),
             };
 
@@ -134,7 +137,7 @@ export const traerInfo = createSlice({
 
             let desercionMujeres = {
                 name: "Mujeres",
-                y: parseFloat(porcentajeTotalDeMujeres, 2),
+                y: porcentajeTotalDeMujeres,
                 cantidad: parseInt(data.TotMujeres),
             };
 
@@ -144,7 +147,7 @@ export const traerInfo = createSlice({
     }
 })
 
-export const traerInfoesercionGenerosEdadEmbarazoAsync = (id_Malla) => (dispatch) => {
+export const traerInfoesercionGenerosEdadEmbarazoAsync = (id_Malla:number) => (dispatch:any) => {
     axios.get(ApiUrl.Api + '/api/educacion/tasa_desertores/principal/general_generos_edad_embarazo/' + id_Malla, {
         headers: {
             Authorization: "Bearer " + ApiUrl.userToken,
@@ -170,7 +173,7 @@ export const traerInfoesercionGenerosEdadEmbarazoAsync = (id_Malla) => (dispatch
 
 
 export const { setInfoDesertoresMaternidad, setInfoDesertoresPorEdad, setInfoDesertoresGenero } = traerInfo.actions;
-export const selectPieDesercionPorMaternidad = (state) => state.HighchartDesercionGenerosEdadEmbarazo.PieDesercionPorMaternidad;
-export const selectColumnDesercionPorEdad = (state) => state.HighchartDesercionGenerosEdadEmbarazo.ColumnDesercionPorEdad;
-export const selectColumnDesercionPorGenero = (state) => state.HighchartDesercionGenerosEdadEmbarazo.ColumnDesercionPorGenero;
+export const selectPieDesercionPorMaternidad = (state:any) => state.HighchartDesercionGenerosEdadEmbarazo.PieDesercionPorMaternidad;
+export const selectColumnDesercionPorEdad = (state:any) => state.HighchartDesercionGenerosEdadEmbarazo.ColumnDesercionPorEdad;
+export const selectColumnDesercionPorGenero = (state:any) => state.HighchartDesercionGenerosEdadEmbarazo.ColumnDesercionPorGenero;
 export default traerInfo.reducer;

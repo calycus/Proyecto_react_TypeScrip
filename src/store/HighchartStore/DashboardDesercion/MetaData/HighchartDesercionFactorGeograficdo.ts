@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { arrayDesercionPorGeografia, ColumnFactorGeografico } from "../../../../models/desercion/metaDataDesercion";
 import ApiUrl from '../../../ApiUrl';
 
 export const traerInfo = createSlice({
@@ -15,7 +16,7 @@ export const traerInfo = createSlice({
                     data: [],
                 },
             ],
-        },
+        } as ColumnFactorGeografico,
 
     },
 
@@ -31,10 +32,10 @@ export const traerInfo = createSlice({
             state.ColumnFactorGeografico.series[0].data = [];
             state.ColumnFactorGeografico.categories = [];
 
-            state.TotAlumnosGeografico = totalAlumnosDesertoresPorFactorGeografico;
+            state.ColumnFactorGeografico.TotAlumnosGeografico = totalAlumnosDesertoresPorFactorGeografico;
 
             arrayEstadisticaDesercionPorFactorGeografico.forEach(
-                (elementoFactorGeografico) => {
+                (elementoFactorGeografico:arrayDesercionPorGeografia) => {
                     if (
                         arrayEstadisticaDesercionPorFactorGeografico.length > 10 &&
                         elementoFactorGeografico.cantidad <= 7
@@ -48,8 +49,8 @@ export const traerInfo = createSlice({
                     state.ColumnFactorGeografico.series[0].data.push({
                         name: elementoFactorGeografico.canton,
                         label: elementoFactorGeografico.canton,
-                        y: parseFloat(elementoFactorGeografico.porcentaje),
-                        cantidad: parseInt(elementoFactorGeografico.cantidad),
+                        y: elementoFactorGeografico.porcentaje,
+                        cantidad: elementoFactorGeografico.cantidad,
                     });
 
                 }
@@ -58,7 +59,7 @@ export const traerInfo = createSlice({
     }
 })
 
-export const traerInfoDSColumnFactorGeograficoAsync = (id_Malla) => (dispatch) => {
+export const traerInfoDSColumnFactorGeograficoAsync = (id_Malla:number) => (dispatch:any) => {
     axios.get(ApiUrl.Api + '/api/educacion/tasa_desertores/metadatos/factor_geografico/' + id_Malla, {
         headers: {
             Authorization: "Bearer " + ApiUrl.userToken,
@@ -72,5 +73,5 @@ export const traerInfoDSColumnFactorGeograficoAsync = (id_Malla) => (dispatch) =
 
 
 export const { setInfoFactorGeografico } = traerInfo.actions;
-export const selectColumnFactorGeografico = (state) => state.HighchartDesercionFactorGeografico.ColumnFactorGeografico;
+export const selectColumnFactorGeografico = (state:any) => state.HighchartDesercionFactorGeografico.ColumnFactorGeografico;
 export default traerInfo.reducer;

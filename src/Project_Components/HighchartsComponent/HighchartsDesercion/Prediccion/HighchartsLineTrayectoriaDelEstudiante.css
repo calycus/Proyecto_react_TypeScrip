@@ -1,0 +1,8 @@
+.HighchartsLineTrayectoriaDelEstudiante {
+    display: flex;
+    flex-direction: column;
+    min-width: 100%;
+    min-height: 350px;
+    max-height: 400px;
+    justify-content: center;
+}

@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { json_clase_salariales, PieFactorEconomico } from "../../../../models/desercion/metaDataDesercion";
 import ApiUrl from '../../../ApiUrl';
 
 export const traerInfo = createSlice({
@@ -14,7 +15,7 @@ export const traerInfo = createSlice({
                     data: [{ sliced: true, selected: true }],
                 },
             ],
-        },
+        } as PieFactorEconomico,
 
     },
 
@@ -22,11 +23,11 @@ export const traerInfo = createSlice({
         setInfoFactorEconomico: (state, action) => {
             let data = action.payload
 
-            let arrayEstadisticaDesercionPorFactorEconomico = data.json_clase_salariales;
-            let totalAlumnosDesertoresPorFactorEconomico = data.tot_alumnos_desertores;
+            let arrayEstadisticaDesercionPorFactorEconomico:json_clase_salariales = data.json_clase_salariales;
+            let totalAlumnosDesertoresPorFactorEconomico:number = data.tot_alumnos_desertores;
 
             state.PieFactorEconomico.series[0].data = [];
-            state.TotAlumnosEconomico = totalAlumnosDesertoresPorFactorEconomico;
+            state.PieFactorEconomico.TotAlumnosEconomico = totalAlumnosDesertoresPorFactorEconomico;
 
             let ObjetoFactorEconomico = {
                 name: "Salario Básico",
@@ -35,6 +36,8 @@ export const traerInfo = createSlice({
                 cantidad:
                     arrayEstadisticaDesercionPorFactorEconomico
                         .contador_clase_salario_basico,
+                sliced: false,
+                selected: false,
             };
             state.PieFactorEconomico.series[0].data.push(ObjetoFactorEconomico);
 
@@ -57,6 +60,8 @@ export const traerInfo = createSlice({
                 cantidad:
                     arrayEstadisticaDesercionPorFactorEconomico
                         .contador_clase_salario_alta,
+                sliced: false,
+                selected: false,
             };
             state.PieFactorEconomico.series[0].data.push(ObjetoFactorEconomico);
 
@@ -67,6 +72,8 @@ export const traerInfo = createSlice({
                 cantidad:
                     arrayEstadisticaDesercionPorFactorEconomico
                         .contador_clase_salario_rico,
+                sliced: false,
+                selected: false,
             };
             state.PieFactorEconomico.series[0].data.push(ObjetoFactorEconomico);
 
@@ -77,6 +84,8 @@ export const traerInfo = createSlice({
                 cantidad:
                     arrayEstadisticaDesercionPorFactorEconomico
                         .contador_clase_no_definida,
+                sliced: false,
+                selected: false,
             };
             state.PieFactorEconomico.series[0].data.push(ObjetoFactorEconomico);
 
@@ -85,7 +94,7 @@ export const traerInfo = createSlice({
     }
 })
 
-export const traerInfoDSPieFactorEconomicoAsync = (id_Malla) => (dispatch) => {
+export const traerInfoDSPieFactorEconomicoAsync = (id_Malla:number) => (dispatch:any) => {
     axios.get(ApiUrl.Api + '/api/educacion/tasa_desertores/metadatos/factor_economico/' + id_Malla, {
         headers: {
             Authorization: "Bearer " + ApiUrl.userToken,
@@ -99,5 +108,5 @@ export const traerInfoDSPieFactorEconomicoAsync = (id_Malla) => (dispatch) => {
 
 
 export const { setInfoFactorEconomico } = traerInfo.actions;
-export const selectPieFactorEconomico = (state) => state.HighchartDesercionFactorEconomico.PieFactorEconomico;
+export const selectPieFactorEconomico = (state:any) => state.HighchartDesercionFactorEconomico.PieFactorEconomico;
 export default traerInfo.reducer;

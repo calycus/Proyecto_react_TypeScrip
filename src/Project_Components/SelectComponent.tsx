@@ -29,7 +29,7 @@ import { traerInfoRepitenciaPorMateriasAsync } from '../store/HighchartStore/Das
 import { traerInfoRPPieFactorEconomicoAsync } from '../store/HighchartStore/DashboardRepitencia/MetaData/HighchartRepitenciaFactorEconomico';
 import { traerInfoRPColumnFactorEdnicoAsync } from '../store/HighchartStore/DashboardRepitencia/MetaData/HighchartRepitenciaFactorEdnico';
 import { traerInfoRPColumnFactorGeograficoAsync } from '../store/HighchartStore/DashboardRepitencia/MetaData/HighchartRepitenciaFactorGeograficdo';
-
+*/
 ///Desercion
 import { traerInfoLineDesertoresAsync } from '../store/HighchartStore/DashboardDesercion/TasaDeDesercion/HighchartDesercionGeneral'
 import { traerInfoesercionGenerosEdadEmbarazoAsync } from '../store/HighchartStore/DashboardDesercion/TasaDeDesercion/HighchartDesercionGenerosEdadEmbarazo'
@@ -39,7 +39,7 @@ import { traerListaPosiblesDesertoresAsync } from '../store/HighchartStore/Dashb
 import { traerInfoDSPieFactorEconomicoAsync } from '../store/HighchartStore/DashboardDesercion/MetaData/HighchartDesercionFactorEconomico';
 import { traerInfoDSColumnFactorEdnicoAsync } from '../store/HighchartStore/DashboardDesercion/MetaData/HighchartDesercionFactorEdnico';
 import { traerInfoDSColumnFactorGeograficoAsync } from '../store/HighchartStore/DashboardDesercion/MetaData/HighchartDesercionFactorGeograficdo';
- */
+ 
 
 //dependencias CSS
 import '../css/Select.css'
@@ -50,13 +50,13 @@ import Periodo from '../models/facultades/periodo';
 
 
 //constantes globales
-let nameMalla = "";
-let newIdMalla = null;
-let idsPeriodos = "";
+let nameMalla:string = "";
+let newIdMalla:number = 0;
+let idsPeriodos:string = "";
 let theme: Theme;
 let mallaAux: MallaAux = { idEscuela: 0, idMalla: 0 };
 let ArrayPeriodos: Periodo[] = [];
-let arrayDePeriodosSeleccionados = [];
+let arrayDePeriodosSeleccionados: Periodo[] = [];
 let Metodologia = [
     { Tipo: "Regresión Lineal", id: 1 }
 ]
@@ -70,9 +70,9 @@ interface MallaAux {
 
 //funcion encargada de traer las los datos del store
 function UseSelectAll() {
-    const id_escuela = useSelector(selectIdEscuela);
-    const id_malla = useSelector(selectIdMalla);
-    const mallas = useSelector(selectArrayMallas);
+    const id_escuela:number = useSelector(selectIdEscuela);
+    const id_malla:number = useSelector(selectIdMalla);
+    const mallas:Malla[] = useSelector(selectArrayMallas);
     return {
         idEscuela: id_escuela,
         idMalla: id_malla
@@ -105,9 +105,9 @@ function CardSelectMalla(props: Malla[]) {
     const sampleLocation: any = useLocation();
     const [PeriodosDeInteres, setPeriodosDeInteres] = useState<Periodo[]>([]);
     const [PeriodoSelected, setPeriodoSelected] = useState<Periodo[]>([]);
-    const ITEM_HEIGHT = 48;
-    const ITEM_PADDING_TOP = 2;
-    const MenuProps = {
+    const ITEM_HEIGHT:number = 48;
+    const ITEM_PADDING_TOP:number = 2;
+    const MenuProps:any = {
         PaperProps: {
             style: {
                 maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
@@ -297,7 +297,7 @@ const SearchButton = ({ dispatch, sampleLocation, PeriodosDeInteres, PeriodoSele
         dispatch(traerInfoRPColumnFactorEdnicoAsync(mallaAux.idMalla))
         dispatch(traerInfoRPColumnFactorGeograficoAsync(mallaAux.idMalla))
 
-    } else if (sampleLocation.pathname == "/tasa_desercion") {
+    }*/ else if (sampleLocation.pathname == "/tasa_desercion") {
         dispatch(traerInfoLineDesertoresAsync(mallaAux.idMalla))
         dispatch(traerInfoesercionGenerosEdadEmbarazoAsync(mallaAux.idMalla))
 
@@ -312,6 +312,6 @@ const SearchButton = ({ dispatch, sampleLocation, PeriodosDeInteres, PeriodoSele
         dispatch(traerInfoDSColumnFactorEdnicoAsync(mallaAux.idMalla))
         dispatch(traerInfoDSColumnFactorGeograficoAsync(mallaAux.idMalla))
 
-    } */
+    } 
     return
 }

@@ -1,0 +1,50 @@
+.BorderLinearTextContents {
+    background-color: #fff !important;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+    line-height: 15px;
+    min-height: 12px;
+    font-weight: normal;
+    color: black;
+    vertical-align: baseline;
+}
+
+.cardIndiceDeDesercioncionPorMalla {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    padding: 0.5rem;
+    justify-items: center;
+}
+
+.BoxContentsCircularProgressDesercion{
+    display: flex !important;
+    justify-content: space-around;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.PaperDesercion{
+    min-width: -webkit-fill-available;
+    max-width: 9rem;
+    text-align: center;
+    font-family: "Roboto", "-apple-system", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    font-size: 0.875rem !important;
+}
+
+.divContents{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.DivPaperContents{
+    display: flex;
+    justify-content: space-around;
+}
+.css-1pvw06u-MuiStack-root>:not(style)+:not(style) {
+    margin: 0;
+    margin-top: 0px !important;
+}

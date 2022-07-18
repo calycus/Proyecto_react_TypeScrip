@@ -1,0 +1,41 @@
+.NameEstudiante {
+    font-weight: 700 !important;
+    text-align: center !important;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+}
+
+.DataFijaEstudiante {
+    font-size: 14px;
+    font-weight: 700;
+    text-align: left;
+}
+
+.DataDinamicaEstudiante {
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: .03333em;
+    line-height: 1.25rem;
+    text-align: right;
+}
+
+.AlingDataPersonalEstudiante {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.AlingDataContactoEstudiante {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.ListNumerosEstudiante {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    align-items: flex-end;
+    flex-direction: column;
+}

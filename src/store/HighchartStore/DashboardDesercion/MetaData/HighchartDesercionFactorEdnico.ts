@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { arrayDesercionPorEtnia, ColumnFactorEdnico } from "../../../../models/desercion/metaDataDesercion";
 import ApiUrl from '../../../ApiUrl';
 
 export const traerInfo = createSlice({
@@ -15,7 +16,7 @@ export const traerInfo = createSlice({
                     data: [],
                 },
             ],
-        },
+        } as ColumnFactorEdnico,
 
     },
 
@@ -24,19 +25,19 @@ export const traerInfo = createSlice({
             let data = action.payload
 
             let arrayEstadisticaDesercionPorEtnia = data.array_cantidades_desercion_estadisticas_por_etnia_desertores_PROCESADO;
-            state.TotAlumnosEdnicos = data.tot_alumnos_desertores;
+            state.ColumnFactorEdnico.TotAlumnosEdnicos = data.tot_alumnos_desertores;
 
             state.ColumnFactorEdnico.series[0].data = [];
             state.ColumnFactorEdnico.categories = [];
 
-            arrayEstadisticaDesercionPorEtnia.forEach((elementoEtnia) => {
+            arrayEstadisticaDesercionPorEtnia.forEach((elementoEtnia: arrayDesercionPorEtnia) => {
                 state.ColumnFactorEdnico.categories.push(elementoEtnia.etnia);
 
                 state.ColumnFactorEdnico.series[0].data.push({
                     name: elementoEtnia.etnia,
                     label: elementoEtnia.etnia,
-                    y: parseFloat(elementoEtnia.porcentaje),
-                    cantidad: parseInt(elementoEtnia.cantidad),
+                    y: elementoEtnia.porcentaje,
+                    cantidad: elementoEtnia.cantidad
                 });
             });
 
@@ -44,7 +45,7 @@ export const traerInfo = createSlice({
     }
 })
 
-export const traerInfoDSColumnFactorEdnicoAsync = (id_Malla) => (dispatch) => {
+export const traerInfoDSColumnFactorEdnicoAsync = (id_Malla:number) => (dispatch:any) => {
     axios.get(ApiUrl.Api + '/api/educacion/tasa_desertores/metadatos/factor_etnico/' + id_Malla, {
         headers: {
             Authorization: "Bearer " + ApiUrl.userToken,
@@ -58,5 +59,5 @@ export const traerInfoDSColumnFactorEdnicoAsync = (id_Malla) => (dispatch) => {
 
 
 export const { setInfoFactorEdnico } = traerInfo.actions;
-export const selectColumnFactorEdnico = (state) => state.HighchartDesercionFactorEdnico.ColumnFactorEdnico;
+export const selectColumnFactorEdnico = (state:any) => state.HighchartDesercionFactorEdnico.ColumnFactorEdnico;
 export default traerInfo.reducer;

@@ -20,7 +20,7 @@ import HighchartStoreRepitenciaPorMateria from './HighchartStore/DashboardRepite
 import HighchartRepitenciaFactorEconomico from './HighchartStore/DashboardRepitencia/MetaData/HighchartRepitenciaFactorEconomico'
 import HighchartRepitenciaFactorEdnico from './HighchartStore/DashboardRepitencia/MetaData/HighchartRepitenciaFactorEdnico'
 import HighchartRepitenciaFactorGeografico from './HighchartStore/DashboardRepitencia/MetaData/HighchartRepitenciaFactorGeograficdo'
-
+ */
 //store Highchart DS Desercion
 import HighchartDesercionGeneral from './HighchartStore/DashboardDesercion/TasaDeDesercion/HighchartDesercionGeneral'
 import HighchartDesercionGenerosEdadEmbarazo from './HighchartStore/DashboardDesercion/TasaDeDesercion/HighchartDesercionGenerosEdadEmbarazo'
@@ -31,7 +31,7 @@ import HighchartStoreInfoPrediccionDesercion from './HighchartStore/DashboardDes
 import HighchartDesercionFactorEconomico from './HighchartStore/DashboardDesercion/MetaData/HighchartDesercionFactorEconomico'
 import HighchartDesercionFactorEdnico from './HighchartStore/DashboardDesercion/MetaData/HighchartDesercionFactorEdnico'
 import HighchartDesercionFactorGeografico from './HighchartStore/DashboardDesercion/MetaData/HighchartDesercionFactorGeograficdo'
- */
+
 export default configureStore({
   reducer: {
     arrayMallas: ArrayMallasReducer,
@@ -55,16 +55,16 @@ export default configureStore({
       HighchartRepitenciaFactorEconomico: HighchartRepitenciaFactorEconomico,
       HighchartRepitenciaFactorEdnico: HighchartRepitenciaFactorEdnico,
       HighchartRepitenciaFactorGeografico: HighchartRepitenciaFactorGeografico,
-  
-      //store Highchart DS Desercion
-      HighchartDesercionGeneral: HighchartDesercionGeneral,
-      HighchartDesercionGenerosEdadEmbarazo: HighchartDesercionGenerosEdadEmbarazo,
-      ////store Highchart DS Desercion => Prediccion
-      ListTableEstudiantesPrediccion:ListTableEstudiantesPrediccion,
-      HighchartStoreInfoPrediccionDesercion:HighchartStoreInfoPrediccionDesercion,
-      ////store Highchart DS Desercion => Metadata
-      HighchartDesercionFactorEconomico: HighchartDesercionFactorEconomico,
-      HighchartDesercionFactorEdnico: HighchartDesercionFactorEdnico,
-      HighchartDesercionFactorGeografico: HighchartDesercionFactorGeografico */
+   */
+    //store Highchart DS Desercion
+    HighchartDesercionGeneral: HighchartDesercionGeneral,
+    HighchartDesercionGenerosEdadEmbarazo: HighchartDesercionGenerosEdadEmbarazo,
+    ////store Highchart DS Desercion => Prediccion
+    //ListTableEstudiantesPrediccion: ListTableEstudiantesPrediccion,
+    //HighchartStoreInfoPrediccionDesercion: HighchartStoreInfoPrediccionDesercion,
+    ////store Highchart DS Desercion => Metadata
+    //HighchartDesercionFactorEconomico: HighchartDesercionFactorEconomico,
+    //HighchartDesercionFactorEdnico: HighchartDesercionFactorEdnico,
+    //HighchartDesercionFactorGeografico: HighchartDesercionFactorGeografico
   },
 })

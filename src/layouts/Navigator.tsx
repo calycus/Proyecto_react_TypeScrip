@@ -24,7 +24,7 @@ import '../css/Drawer.css'
 const drawerWidth = 270;
 
 export default function PermanentDrawerLeft() {
-  const [expandedPanel, setExpandedPanel] = useState('');
+  const [expandedPanel, setExpandedPanel] = useState<string>('');
   const sampleLocation = useLocation();
 
   let drawerComp = <div></div>;
