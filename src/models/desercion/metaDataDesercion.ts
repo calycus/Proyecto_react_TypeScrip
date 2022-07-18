@@ -54,6 +54,7 @@ export interface arrayDesercionPorEtnia {
     porcentaje: number
 }
 
+
 /* ColumnFactorGeografico */
 export interface ColumnFactorGeografico {
     TotAlumnosGeografico: number,

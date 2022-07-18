@@ -16,7 +16,7 @@ import Dashboard_Tasa_Desercion from '../Dashboard_Page/DsDesercion/TasaDeDeserc
 import Dashboard_Tasa_Desercion_Prediccion from '../Dashboard_Page/DsDesercion/Prediccion/Dashboard_Desercion_Prediccion';
 import Dashboard_Tasa_Desercion_MetaData from '../Dashboard_Page/DsDesercion/Metadata/Metadata_Desercion';
 
- 
+
 const SwitchDrawer = () => {
     return (
         <Routes>
@@ -28,16 +28,15 @@ const SwitchDrawer = () => {
             <Route path='/tasa_retencion' element={
                 <Dashboard_Tasa_Retencion />
             } />
-            {/* 
-            <Route path='/tasa_repitencia' element={
+            {/*  <Route path='/tasa_repitencia' element={
                 <Dashboard_Tasa_Repitencia />
-            } />
+            } />  
             <Route path='/tasa_repitencia_por_materia' element={
                 <Dashboard_Repitencia_Por_Materia />
-            } />
+            } />  
             <Route path='/tasa_repitencia_metadata' element={
                 <Dashboard_Tasa_Repitencia_MetaData />
-            } />*/
+            } /> */}
             <Route path='/tasa_desercion' element={
                 <Dashboard_Tasa_Desercion />
             } />
@@ -46,7 +45,7 @@ const SwitchDrawer = () => {
             } />
             <Route path='/tasa_desercion_metadata' element={
                 <Dashboard_Tasa_Desercion_MetaData />
-            } />}
+            } />
 
         </Routes>
     )

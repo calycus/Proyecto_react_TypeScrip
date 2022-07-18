@@ -39,7 +39,7 @@ import { traerListaPosiblesDesertoresAsync } from '../store/HighchartStore/Dashb
 import { traerInfoDSPieFactorEconomicoAsync } from '../store/HighchartStore/DashboardDesercion/MetaData/HighchartDesercionFactorEconomico';
 import { traerInfoDSColumnFactorEdnicoAsync } from '../store/HighchartStore/DashboardDesercion/MetaData/HighchartDesercionFactorEdnico';
 import { traerInfoDSColumnFactorGeograficoAsync } from '../store/HighchartStore/DashboardDesercion/MetaData/HighchartDesercionFactorGeograficdo';
- 
+
 
 //dependencias CSS
 import '../css/Select.css'
@@ -50,9 +50,9 @@ import Periodo from '../models/facultades/periodo';
 
 
 //constantes globales
-let nameMalla:string = "";
-let newIdMalla:number = 0;
-let idsPeriodos:string = "";
+let nameMalla: string = "";
+let newIdMalla: number = 0;
+let idsPeriodos: string = "";
 let theme: Theme;
 let mallaAux: MallaAux = { idEscuela: 0, idMalla: 0 };
 let ArrayPeriodos: Periodo[] = [];
@@ -67,12 +67,17 @@ interface MallaAux {
     idMalla: number
 }
 
+interface Metodologia {
+    Tipo: string,
+    id: number
+}
+
 
 //funcion encargada de traer las los datos del store
 function UseSelectAll() {
-    const id_escuela:number = useSelector(selectIdEscuela);
-    const id_malla:number = useSelector(selectIdMalla);
-    const mallas:Malla[] = useSelector(selectArrayMallas);
+    const id_escuela: number = useSelector(selectIdEscuela);
+    const id_malla: number = useSelector(selectIdMalla);
+    const mallas: Malla[] = useSelector(selectArrayMallas);
     return {
         idEscuela: id_escuela,
         idMalla: id_malla
@@ -104,10 +109,10 @@ function CardSelectMalla(props: Malla[]) {
     const dispatch: any = useDispatch();
     const sampleLocation: any = useLocation();
     const [PeriodosDeInteres, setPeriodosDeInteres] = useState<Periodo[]>([]);
-    const [PeriodoSelected, setPeriodoSelected] = useState<Periodo[]>([]);
-    const ITEM_HEIGHT:number = 48;
-    const ITEM_PADDING_TOP:number = 2;
-    const MenuProps:any = {
+    const [PeriodoSelected, setPeriodoSelected] = useState<number>(-1);
+    const ITEM_HEIGHT: number = 48;
+    const ITEM_PADDING_TOP: number = 2;
+    const MenuProps: any = {
         PaperProps: {
             style: {
                 maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
@@ -177,9 +182,10 @@ function CardSelectMalla(props: Malla[]) {
                         )}
                         MenuProps={MenuProps}
                     >
-                        {ArrayPeriodos.map((periodos) => (
+                        {ArrayPeriodos.map((periodos:Periodo) => (
                             <MenuItem
                                 key={periodos.id}
+                                value={periodos.id}
                                 style={getStyles(periodos.id, PeriodosDeInteres, theme)}
                             >
                                 {periodos.abreviatura}
@@ -200,9 +206,10 @@ function CardSelectMalla(props: Malla[]) {
                         input={<OutlinedInput id="select-simple-chip" label="Chip" />}
                         MenuProps={MenuProps}
                     >
-                        {ArrayPeriodos.map((periodos) => (
+                        {ArrayPeriodos.map((periodos:Periodo) => (
                             <MenuItem
                                 key={periodos.id}
+                                value={periodos.id}
                                 style={getStyles(periodos.id, PeriodosDeInteres, theme)}
                             >
                                 {periodos.nombre}
@@ -223,9 +230,10 @@ function CardSelectMalla(props: Malla[]) {
                         input={<OutlinedInput id="select-simple-chip" label="Chip" />}
                         MenuProps={MenuProps}
                     >
-                        {Metodologia.map((metodologia) => (
+                        {Metodologia.map((metodologia:Metodologia) => (
                             <MenuItem
                                 key={metodologia.id}
+                                value={metodologia.id}
                                 style={getStyles(metodologia.id, PeriodosDeInteres, theme)}
                             >
                                 {metodologia.Tipo}
@@ -270,7 +278,7 @@ export default {
 }
 
 const SearchButton = ({ dispatch, sampleLocation, PeriodosDeInteres, PeriodoSelected }:
-    { dispatch: any, sampleLocation: any, PeriodosDeInteres: Periodo[], PeriodoSelected: Periodo[] }) => {
+    { dispatch: any, sampleLocation: any, PeriodosDeInteres: Periodo[], PeriodoSelected: number }) => {
     if (sampleLocation.pathname == "/general") {
         dispatch(traerInfoGeneralAsync(mallaAux.idMalla))
 
@@ -302,16 +310,16 @@ const SearchButton = ({ dispatch, sampleLocation, PeriodosDeInteres, PeriodoSele
         dispatch(traerInfoesercionGenerosEdadEmbarazoAsync(mallaAux.idMalla))
 
     } else if (sampleLocation.pathname == "/tasa_desercion_prediccion") {
-        if (PeriodoSelected.length == "") {
+        if (PeriodoSelected == -1) {
             return
         } else {
-            dispatch(traerListaPosiblesDesertoresAsync(mallaAux.idMalla, PeriodoSelected.id))
+            dispatch(traerListaPosiblesDesertoresAsync(mallaAux.idMalla, PeriodoSelected))
         }
     } else if (sampleLocation.pathname == "/tasa_desercion_metadata") {
         dispatch(traerInfoDSPieFactorEconomicoAsync(mallaAux.idMalla))
         dispatch(traerInfoDSColumnFactorEdnicoAsync(mallaAux.idMalla))
         dispatch(traerInfoDSColumnFactorGeograficoAsync(mallaAux.idMalla))
 
-    } 
+    }
     return
 }

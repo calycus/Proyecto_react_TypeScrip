@@ -1,15 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { ArrayInfoEstudiantesEnRiesgo, arrayMateriasReprobadas, seriesTrayectoriaAcademica } from "../../../../models/desercion/PrediccionDesercion";
 import ApiUrl from '../../../ApiUrl';
 
 export const traerInfo = createSlice({
     name: 'HighchartStoreInfoPrediccionDesercion',
     initialState: {
-        array_Info_Estudiantes_En_Riesgo: [],
-        array_Tracyectoria_Academica_Del_Estudiante: [],
-        array_Materias_Suspendidas: [],
-        array_Categorias: [],
-        array_Series: [],
+        array_Info_Estudiantes_En_Riesgo: [] as ArrayInfoEstudiantesEnRiesgo[],
+        array_Tracyectoria_Academica_Del_Estudiante: [] as any,
+        array_Materias_Suspendidas: [] as arrayMateriasReprobadas[],
+        array_Categorias: [] as string[],
+        array_Series: [] as seriesTrayectoriaAcademica[],
     },
 
     reducers: {
@@ -28,9 +29,9 @@ export const traerInfo = createSlice({
             state.array_Tracyectoria_Academica_Del_Estudiante = action.payload
 
             /* forEach para poder recorrer la informacion guardada en la variable */
-            state.array_Tracyectoria_Academica_Del_Estudiante.map((elementoPeriodos) => {
-                elementoPeriodos.array_materias_reprobadas.forEach(
-                    (elementoMateriasSuspendida) => {
+            state.array_Tracyectoria_Academica_Del_Estudiante.map((elementoPeriodos:any) => {
+                elementoPeriodos.array_materias_reprobadas.map(
+                    (elementoMateriasSuspendida:arrayMateriasReprobadas) => {
                         state.array_Materias_Suspendidas.push({
                             materia: elementoMateriasSuspendida.materia,
                             nivel: elementoMateriasSuspendida.nivel,
@@ -53,7 +54,7 @@ export const traerInfo = createSlice({
     }
 })
 
-export const traerInfoEstudiantesDesertoresAsync = (id_Malla, id_Estudiante) => (dispatch) => {
+export const traerInfoEstudiantesDesertoresAsync = (id_Malla:number, id_Estudiante:number) => (dispatch:any) => {
 
     axios.get(ApiUrl.Api + '/api/educacion/tasa_desertores/prediccion/data_estudiantes_potenciales_desertores/' +
         id_Estudiante +
@@ -69,7 +70,7 @@ export const traerInfoEstudiantesDesertoresAsync = (id_Malla, id_Estudiante) => 
         })
 }
 
-export const traerInfoTrayectoriaEstudiantesAsync = (id_Malla, id_Estudiante) => (dispatch) => {
+export const traerInfoTrayectoriaEstudiantesAsync = (id_Malla:number, id_Estudiante:number) => (dispatch:any) => {
 
     axios.get(ApiUrl.Api + '/api/educacion/tasa_desertores/prediccion/inscripciones_perdidas_potenciales_desertores/' +
         id_Malla +
@@ -86,9 +87,9 @@ export const traerInfoTrayectoriaEstudiantesAsync = (id_Malla, id_Estudiante) =>
 }
 
 export const { setInfoEstudianteEnRiesgo, setInfoTrayectoriaEstudiantes } = traerInfo.actions;
-export const selectArrayInfoEstudiante = (state) => state.HighchartStoreInfoPrediccionDesercion.array_Info_Estudiantes_En_Riesgo;
-export const selectArrayMateriaSuspendidas = (state) => state.HighchartStoreInfoPrediccionDesercion.array_Materias_Suspendidas;
-export const selectArrayCategoria = (state) => state.HighchartStoreInfoPrediccionDesercion.array_Categorias;
-export const selectArraySeries = (state) => state.HighchartStoreInfoPrediccionDesercion.array_Series;
+export const selectArrayInfoEstudiante = (state:any) => state.HighchartStoreInfoPrediccionDesercion.array_Info_Estudiantes_En_Riesgo;
+export const selectArrayMateriaSuspendidas = (state:any) => state.HighchartStoreInfoPrediccionDesercion.array_Materias_Suspendidas;
+export const selectArrayCategoria = (state:any) => state.HighchartStoreInfoPrediccionDesercion.array_Categorias;
+export const selectArraySeries = (state:any) => state.HighchartStoreInfoPrediccionDesercion.array_Series;
 
 export default traerInfo.reducer;

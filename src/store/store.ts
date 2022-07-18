@@ -60,11 +60,11 @@ export default configureStore({
     HighchartDesercionGeneral: HighchartDesercionGeneral,
     HighchartDesercionGenerosEdadEmbarazo: HighchartDesercionGenerosEdadEmbarazo,
     ////store Highchart DS Desercion => Prediccion
-    //ListTableEstudiantesPrediccion: ListTableEstudiantesPrediccion,
-    //HighchartStoreInfoPrediccionDesercion: HighchartStoreInfoPrediccionDesercion,
+    ListTableEstudiantesPrediccion: ListTableEstudiantesPrediccion,
+    HighchartStoreInfoPrediccionDesercion: HighchartStoreInfoPrediccionDesercion,
     ////store Highchart DS Desercion => Metadata
-    //HighchartDesercionFactorEconomico: HighchartDesercionFactorEconomico,
-    //HighchartDesercionFactorEdnico: HighchartDesercionFactorEdnico,
-    //HighchartDesercionFactorGeografico: HighchartDesercionFactorGeografico
+    HighchartDesercionFactorEconomico: HighchartDesercionFactorEconomico,
+    HighchartDesercionFactorEdnico: HighchartDesercionFactorEdnico,
+    HighchartDesercionFactorGeografico: HighchartDesercionFactorGeografico
   },
 })

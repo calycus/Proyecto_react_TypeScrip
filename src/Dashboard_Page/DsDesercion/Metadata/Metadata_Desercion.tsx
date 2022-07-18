@@ -17,12 +17,13 @@ import { traerInfoDSColumnFactorEdnicoAsync } from '../../../store/HighchartStor
 import { traerInfoDSColumnFactorGeograficoAsync } from '../../../store/HighchartStore/DashboardDesercion/MetaData/HighchartDesercionFactorGeograficdo';
 //dependencias CSS
 import './Metadata_Desercion.css'
+import { Malla } from '../../../models/facultades/facultad';
 
 export default function PageTasaDeDesercionMetaData() {
-    const id_escuela = useSelector(selectIdEscuela);
-    const id_malla = useSelector(selectIdMalla);
-    const mallas = useSelector(selectArrayMallas);
-    const dispatch = useDispatch();
+    const id_escuela:number = useSelector(selectIdEscuela);
+    const id_malla:number = useSelector(selectIdMalla);
+    const mallas:Malla[] = useSelector(selectArrayMallas);
+    const dispatch:any = useDispatch();
     
     React.useEffect(() => {
         dispatch(traerMallasPorIdEscuelaAsync(id_escuela))

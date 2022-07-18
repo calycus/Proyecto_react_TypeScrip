@@ -10,28 +10,29 @@ import { selectArrayDataEstudiantesEnRiesgo } from '../../../../store/HighchartS
 import { selectIdMalla } from '../../../../store/MallaStore/EleccionMallaStore';
 import { traerInfoEstudiantesDesertoresAsync, traerInfoTrayectoriaEstudiantesAsync } from '../../../../store/HighchartStore/DashboardDesercion/Prediccion/HighchartStoreInfoPrediccionDesercion';
 import '../../../../css/ListTableStyle.css'
+import { ListadoPotencialesDesertores } from '../../../../models/desercion/PrediccionDesercion';
 
 
 HcMore(Highcharts);
 
-let viewRowsTable = [];
-let idMalla = null
+let viewRowsTable: ListadoPotencialesDesertores[] = [];
+let idMalla: number = 0
 
 export default function SubjectDataTable() {
     viewRowsTable = useSelector(selectArrayDataEstudiantesEnRiesgo)
     idMalla = useSelector(selectIdMalla)
 
-    const dispatch = useDispatch();
-    const [RowsTable, setRows] = useState([])
-    const [Search, setSearch] = useState(false)
-    const [checked, setChecked] = useState(-1);
+    const dispatch: any = useDispatch();
+    const [RowsTable, setRows] = useState<ListadoPotencialesDesertores[]>([])
+    const [Search, setSearch] = useState<boolean>(false)
+    const [checked, setChecked] = useState<number>(-1);
 
-    const handleSelects = (data) => {
+    const handleSelects = (data: ListadoPotencialesDesertores) => {
         dispatch(traerInfoEstudiantesDesertoresAsync(idMalla, data.cedula))
         dispatch(traerInfoTrayectoriaEstudiantesAsync(idMalla, data.cedula))
     }
 
-    const requestSearch = (searchedVal) => {
+    const requestSearch = (searchedVal: any) => {
         if (searchedVal.length == 0) {
             setSearch(false)
             return
@@ -43,7 +44,7 @@ export default function SubjectDataTable() {
         setSearch(true)
     };
 
-    const isDisabled = (data) => {
+    const isDisabled = (data:number) => {
         setChecked(data);
     };
 
@@ -100,7 +101,8 @@ export default function SubjectDataTable() {
     )
 }
 
-const Fila = ({ row, handleSelects, isDisabled, index, checked }) => {
+const Fila = ({ row, handleSelects, isDisabled, index, checked }:
+              {row:ListadoPotencialesDesertores, handleSelects:any, isDisabled:any, index:number, checked:number}  ) => {
     return (
         <TableRow
             style={{ display: 'grid', gridTemplateColumns: '3rem auto 7rem 1rem', alignItems: 'center' }}

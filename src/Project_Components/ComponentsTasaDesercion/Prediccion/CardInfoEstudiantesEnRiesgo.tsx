@@ -107,7 +107,7 @@ const CardInfoDataEstudiante = () => {
                             Teléfonos:
                         </div>
                         {(arrayInfoEstudiante.length != 0) ?
-                            arrayInfoEstudiante.telefonos.map((telefonos, index) => {
+                            arrayInfoEstudiante.telefonos.map((telefonos: string, index: number) => {
                                 return (
                                     <div className="ListNumerosEstudiante"
                                         key={index}
@@ -132,6 +132,7 @@ const CardInfoDataEstudiante = () => {
             </Box >
         )
     }
+    return (<div></div>)
 }
 
 export default CardInfoDataEstudiante

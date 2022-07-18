@@ -6,15 +6,16 @@ import { selectArrayCategoria, selectArraySeries } from '../../../../store/Highc
 //dependencia
 import { useSelector } from 'react-redux'
 import './HighchartsLineTrayectoriaDelEstudiante.css'
+import { seriesTrayectoriaAcademica } from '../../../../models/desercion/PrediccionDesercion'
 
-let PreDataCategoria = []
-let PreDataSeries = []
+let PreDataCategoria: string[] = []
+let PreDataSeries: seriesTrayectoriaAcademica[] = []
 
 export default function LineVariableIndependiente() {
     PreDataCategoria = useSelector(selectArrayCategoria);
     PreDataSeries = useSelector(selectArraySeries);
 
-    let newData = {
+    let newData: any = {
         chart: {
             renderTo: "container",
             type: "line",
@@ -53,22 +54,22 @@ export default function LineVariableIndependiente() {
             },
         },
         tooltip: {
-            positioner: function () {
+            positioner: function (this: any) {
                 return {
                     x: this.chart.plotLeft,
                     y: this.chart.plotTop,
                 };
             },
             useHTML: true,
-            formatter: function () {
+            formatter: function (this: any) {
                 let body = this.points.reduce(
-                    (body, p) =>
+                    (body: any, p: any) =>
                         body +
                         `<span style="color:${p.series.color}">\u25CF Materias Repetidas: </span><small><strong>${p.y}</strong></small><br/>`,
                     ""
                 );
                 let body2 = this.points.reduce(
-                    (body2, p) =>
+                    (body2: any, p: any) =>
                         body2 +
                         `<span >${p.x} </span><br/>`,
                     ""
@@ -103,8 +104,10 @@ export default function LineVariableIndependiente() {
             <HighchartsReact
                 highcharts={Highcharts}
                 options={newData}
-                containerProps = {{ className: 'HighchartsLineTrayectoriaDelEstudiante' }}
+                containerProps={{ className: 'HighchartsLineTrayectoriaDelEstudiante' }}
             />
         )
     }
+    return (<div></div>)
+
 }

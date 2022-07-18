@@ -10,11 +10,12 @@ import { selectArrayMallas, traerMallasPorIdEscuelaAsync } from '../../../store/
 import { selectIdEscuela } from '../../../store/MallaStore/EleccionMallaStore';
 //dependencias CSS
 import './Dashboard_Desercion_Prediccion.css'
+import { Malla } from '../../../models/facultades/facultad';
 
 export default function PageTasaDeDesercion() {
-    const mallas = useSelector(selectArrayMallas);
-    const id_escuela = useSelector(selectIdEscuela);
-    const dispatch = useDispatch();
+    const mallas:Malla[] = useSelector(selectArrayMallas);
+    const id_escuela:number = useSelector(selectIdEscuela);
+    const dispatch:any = useDispatch();
 
     React.useEffect(() => {
         dispatch(traerMallasPorIdEscuelaAsync(id_escuela))

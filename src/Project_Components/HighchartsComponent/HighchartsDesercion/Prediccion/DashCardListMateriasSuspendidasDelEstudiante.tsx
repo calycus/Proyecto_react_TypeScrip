@@ -1,17 +1,18 @@
 import React from 'react';
-import {  useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, Divider } from '@mui/material';
 
 //Dependencias
 import { selectArrayMateriaSuspendidas } from '../../../../store/HighchartStore/DashboardDesercion/Prediccion/HighchartStoreInfoPrediccionDesercion';
 import '../../../../css/ListTableStyle.css'
+import { arrayMateriasReprobadas } from '../../../../models/desercion/PrediccionDesercion';
 
 
-let viewRowsTable = [];
+let viewRowsTable: arrayMateriasReprobadas[] = [];
 
 export default function SubjectDataTable() {
     viewRowsTable = useSelector(selectArrayMateriaSuspendidas)
-    console.log(viewRowsTable);
+
     return (
         <TableContainer component={Paper}>
             <Box sx={{ display: 'flex', alignItems: "flex-end" }}>
@@ -22,8 +23,8 @@ export default function SubjectDataTable() {
                     TABLA DE MATERIAS SUSPENDIDAS
                 </Typography>
             </Box>
-            
-            <Divider/>
+
+            <Divider />
             <Table sx={{ minWidth: 400 }} aria-label="simple table">
                 <TableHead style={{ display: "flex" }}>
                     <TableRow
@@ -47,7 +48,7 @@ export default function SubjectDataTable() {
     )
 }
 
-const Fila = ({ row}) => {
+const Fila = ({ row }: { row: arrayMateriasReprobadas }) => {
     return (
         <TableRow
             style={{ display: 'grid', gridTemplateColumns: 'auto 7rem 1rem', alignItems: 'center' }}

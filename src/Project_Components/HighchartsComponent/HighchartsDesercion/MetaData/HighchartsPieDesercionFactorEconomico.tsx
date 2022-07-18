@@ -6,10 +6,11 @@ import { selectPieFactorEconomico } from '../../../../store/HighchartStore/Dashb
 
 //dependencia
 import { useSelector } from 'react-redux'
+import { PieFactorEconomico } from '../../../../models/desercion/metaDataDesercion'
 
 export default function PieDesercionFactorEconomico() {
-    const prePieDesercionFactorEconomico = useSelector(selectPieFactorEconomico);
-    let newData = {
+    const prePieDesercionFactorEconomico:PieFactorEconomico = useSelector(selectPieFactorEconomico);
+    let newData:any = {
         chart: {
             plotBackgroundColor: null,
             plotBorderWidth: null,

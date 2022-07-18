@@ -5,17 +5,17 @@ import { selectArrayDataEstudiantesEnRiesgo } from '../../../../store/HighchartS
 import { selectArrayInfoEstudiante } from '../../../../store/HighchartStore/DashboardDesercion/Prediccion/HighchartStoreInfoPrediccionDesercion'
 //dependencia
 import { useSelector } from 'react-redux'
+import { ArrayInfoEstudiantesEnRiesgo, ListadoPotencialesDesertores } from '../../../../models/desercion/PrediccionDesercion'
 
-let viewRowsTable = []
-let arrayInfoEstudiante = []
+let viewRowsTable: ListadoPotencialesDesertores[] = []
 
 
 export default function ColumnDesercionPorEdad() {
 
     viewRowsTable = useSelector(selectArrayDataEstudiantesEnRiesgo)
-    arrayInfoEstudiante = useSelector(selectArrayInfoEstudiante)
+    let arrayInfoEstudiante: ArrayInfoEstudiantesEnRiesgo = useSelector(selectArrayInfoEstudiante)
 
-    let newData = {
+    let newData: any = {
         chart: {
             type: "column",
         },
@@ -50,8 +50,8 @@ export default function ColumnDesercionPorEdad() {
         series: [],
     };
 
-    if (viewRowsTable.lenght != 0 && arrayInfoEstudiante.lenght != 0) {
-        viewRowsTable.map((elementoFuturo) => {
+    if (viewRowsTable.length != 0) {
+        viewRowsTable.map((elementoFuturo: ListadoPotencialesDesertores) => {
             if (elementoFuturo.cedula == arrayInfoEstudiante.cedula) {
                 let ObjetoTendenciaFutura = {};
                 if (
@@ -63,7 +63,7 @@ export default function ColumnDesercionPorEdad() {
                         data: [
                             {
                                 name: "A Desertar",
-                                y: parseFloat(elementoFuturo.porc_desertar),
+                                y: elementoFuturo.porc_desertar,
                             },
                         ],
                         sliced: true,
@@ -78,7 +78,7 @@ export default function ColumnDesercionPorEdad() {
                             data: [
                                 {
                                     name: "A Continuar",
-                                    y: parseFloat(elementoFuturo.porc_continuar),
+                                    y: elementoFuturo.porc_continuar,
                                 },
                             ],
                             sliced: true,
@@ -91,7 +91,7 @@ export default function ColumnDesercionPorEdad() {
                             data: [
                                 {
                                     name: "Neutral",
-                                    y: parseFloat(elementoFuturo.porc_medio),
+                                    y: elementoFuturo.porc_medio,
                                 },
                             ],
                             sliced: true,
@@ -110,7 +110,7 @@ export default function ColumnDesercionPorEdad() {
                             data: [
                                 {
                                     name: "Neutral",
-                                    y: parseFloat(elementoFuturo.porc_medio),
+                                    y: elementoFuturo.porc_medio,
                                 },
                             ],
                             sliced: true,
@@ -123,7 +123,7 @@ export default function ColumnDesercionPorEdad() {
                             data: [
                                 {
                                     name: "A Continuar",
-                                    y: parseFloat(elementoFuturo.porc_continuar),
+                                    y: elementoFuturo.porc_continuar,
                                 },
                             ],
                             sliced: true,
@@ -145,7 +145,7 @@ export default function ColumnDesercionPorEdad() {
                         data: [
                             {
                                 name: "A Continuar",
-                                y: parseFloat(elementoFuturo.porc_continuar),
+                                y: elementoFuturo.porc_continuar,
                             },
                         ],
                         sliced: true,
@@ -159,7 +159,7 @@ export default function ColumnDesercionPorEdad() {
                             data: [
                                 {
                                     name: "A Desertar",
-                                    y: parseFloat(elementoFuturo.porc_desertar),
+                                    y: elementoFuturo.porc_desertar,
                                 },
                             ],
                             sliced: true,
@@ -172,7 +172,7 @@ export default function ColumnDesercionPorEdad() {
                             data: [
                                 {
                                     name: "Neutral",
-                                    y: parseFloat(elementoFuturo.porc_medio),
+                                    y: elementoFuturo.porc_medio,
                                 },
                             ],
                             sliced: true,
@@ -191,7 +191,7 @@ export default function ColumnDesercionPorEdad() {
                             data: [
                                 {
                                     name: "Neutral",
-                                    y: parseFloat(elementoFuturo.porc_medio),
+                                    y: elementoFuturo.porc_medio,
                                 },
                             ],
                             sliced: true,
@@ -204,7 +204,7 @@ export default function ColumnDesercionPorEdad() {
                             data: [
                                 {
                                     name: "A Desertar",
-                                    y: parseFloat(elementoFuturo.porc_desertar),
+                                    y: elementoFuturo.porc_desertar,
                                 },
                             ],
                             sliced: true,
@@ -221,7 +221,10 @@ export default function ColumnDesercionPorEdad() {
                     ObjetoTendenciaFutura = {
                         name: "Tendencia Alta",
                         data: [
-                            { name: "Neutral", y: parseFloat(elementoFuturo.porc_medio) },
+                            {
+                                name: "Neutral",
+                                y: elementoFuturo.porc_medio
+                            },
                         ],
                         sliced: true,
                     };
@@ -236,7 +239,7 @@ export default function ColumnDesercionPorEdad() {
                             data: [
                                 {
                                     name: "A Desertar",
-                                    y: parseFloat(elementoFuturo.porc_desertar),
+                                    y: elementoFuturo.porc_desertar,
                                 },
                             ],
                             sliced: true,
@@ -249,7 +252,7 @@ export default function ColumnDesercionPorEdad() {
                             data: [
                                 {
                                     name: "A Continuar",
-                                    y: parseFloat(elementoFuturo.porc_continuar),
+                                    y: elementoFuturo.porc_continuar,
                                 },
                             ],
                             sliced: true,
@@ -268,7 +271,7 @@ export default function ColumnDesercionPorEdad() {
                             data: [
                                 {
                                     name: "A Continuar",
-                                    y: parseFloat(elementoFuturo.porc_continuar),
+                                    y: elementoFuturo.porc_continuar,
                                 },
                             ],
                             sliced: true,
@@ -281,7 +284,7 @@ export default function ColumnDesercionPorEdad() {
                             data: [
                                 {
                                     name: "A Desertar",
-                                    y: parseFloat(elementoFuturo.porc_desertar),
+                                    y: elementoFuturo.porc_desertar,
                                 },
                             ],
                             sliced: true,
@@ -301,10 +304,11 @@ export default function ColumnDesercionPorEdad() {
             <HighchartsReact
                 highcharts={Highcharts}
                 options={newData}
-                containerProps = {{ className: 'HighchartsColumnTendenciaDelEstudiante' }}
+                containerProps={{ className: 'HighchartsColumnTendenciaDelEstudiante' }}
             />
         )
     }
+    return (<div></div>)
 
 
 }

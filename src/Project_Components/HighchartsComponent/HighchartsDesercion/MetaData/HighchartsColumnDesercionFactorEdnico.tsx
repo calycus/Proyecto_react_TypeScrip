@@ -2,13 +2,15 @@ import React from 'react'
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
 
-import { selectColumnFactorGeografico } from '../../../../store/HighchartStore/DashboardDesercion/MetaData/HighchartDesercionFactorGeograficdo'
+import { selectColumnFactorEdnico } from '../../../../store/HighchartStore/DashboardDesercion/MetaData/HighchartDesercionFactorEdnico'
+
 //dependencia
 import { useSelector } from 'react-redux'
+import { ColumnFactorEdnico } from '../../../../models/desercion/metaDataDesercion'
 
-export default function ColumnDesercionFactorGeografico() {
-    const preColumnDesercionFactorGeografico = useSelector(selectColumnFactorGeografico);
-    let newData = {
+export default function ColumnDesercionFactorEdnico() {
+    const preColumnDesercionFactorEdnico:ColumnFactorEdnico = useSelector(selectColumnFactorEdnico);
+    let newData:any = {
         chart: {
             type: "column",
             reflow: true,
@@ -37,6 +39,7 @@ export default function ColumnDesercionFactorGeografico() {
             pointFormat:
                 '<span style="color:{point.color}">Incidencia Estudiantil</span>: <b>{point.y:.1f}%</b><br/>' +
                 '<span style="color:{point.color}">Total De Estudiantes</span>: {point.cantidad} <br/>',
+
             shared: true,
         },
         legend: {
@@ -59,9 +62,9 @@ export default function ColumnDesercionFactorGeografico() {
             },
         ],
     };
-    
-    newData.xAxis.categories = preColumnDesercionFactorGeografico.categories
-    newData.series = preColumnDesercionFactorGeografico.series
+
+    newData.xAxis.categories = preColumnDesercionFactorEdnico.categories
+    newData.series = preColumnDesercionFactorEdnico.series
 
     return (
         <HighchartsReact
