@@ -1,0 +1,8 @@
+.HighchartContentLineRepitenciaPorMateria {
+    display: flex;
+    flex-direction: column;
+    min-width: 100%;
+    min-height: 300px;
+    max-height: 350px;
+    justify-content: center;
+}

@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { PieRepitenciaFactorEconomico } from "../../../../models/repitencia/metaDataRepitencia";
 import ApiUrl from '../../../ApiUrl';
 
 export const traerInfo = createSlice({
@@ -14,7 +15,7 @@ export const traerInfo = createSlice({
                     data: [{ sliced: true, selected: true }],
                 },
             ],
-        },
+        } as PieRepitenciaFactorEconomico,
 
     },
 
@@ -25,7 +26,7 @@ export const traerInfo = createSlice({
             let arrayEstadisticaRepeticionPorFactorEconomico = data.json_clase_salariales;
 
             state.PieFactorEconomico.series[0].data = [];
-            state.TotAlumnosEconomico = data.tot_alumnos_desertores;
+            state.PieFactorEconomico.TotAlumnosEconomico = data.tot_alumnos_desertores;
 
             let ObjetoFactorEconomico = {
                 name: "Salario Básico",
@@ -34,6 +35,8 @@ export const traerInfo = createSlice({
                 cantidad:
                     arrayEstadisticaRepeticionPorFactorEconomico
                         .contador_clase_salario_basico,
+                sliced: false,
+                selected: false,
             };
             state.PieFactorEconomico.series[0].data.push(ObjetoFactorEconomico);
 
@@ -56,6 +59,8 @@ export const traerInfo = createSlice({
                 cantidad:
                     arrayEstadisticaRepeticionPorFactorEconomico
                         .contador_clase_salario_alta,
+                sliced: false,
+                selected: false,
             };
             state.PieFactorEconomico.series[0].data.push(ObjetoFactorEconomico);
 
@@ -66,6 +71,8 @@ export const traerInfo = createSlice({
                 cantidad:
                     arrayEstadisticaRepeticionPorFactorEconomico
                         .contador_clase_salario_rico,
+                sliced: false,
+                selected: false,
             };
             state.PieFactorEconomico.series[0].data.push(ObjetoFactorEconomico);
 
@@ -76,6 +83,8 @@ export const traerInfo = createSlice({
                 cantidad:
                     arrayEstadisticaRepeticionPorFactorEconomico
                         .contador_clase_no_definida,
+                sliced: false,
+                selected: false,
             };
             state.PieFactorEconomico.series[0].data.push(ObjetoFactorEconomico);
 
@@ -84,7 +93,7 @@ export const traerInfo = createSlice({
     }
 })
 
-export const traerInfoRPPieFactorEconomicoAsync = (id_Malla) => (dispatch) => {
+export const traerInfoRPPieFactorEconomicoAsync = (id_Malla:number) => (dispatch:any) => {
     axios.get(ApiUrl.Api + '/api/educacion/tasa_repitencia/metadatos/factor_economico/' + id_Malla, {
         headers: {
             Authorization: "Bearer " + ApiUrl.userToken,
@@ -98,5 +107,5 @@ export const traerInfoRPPieFactorEconomicoAsync = (id_Malla) => (dispatch) => {
 
 
 export const { setInfoFactorEconomico } = traerInfo.actions;
-export const selectPieFactorEconomico = (state) => state.HighchartRepitenciaFactorEconomico.PieFactorEconomico;
+export const selectPieFactorEconomico = (state:any) => state.HighchartRepitenciaFactorEconomico.PieFactorEconomico;
 export default traerInfo.reducer;

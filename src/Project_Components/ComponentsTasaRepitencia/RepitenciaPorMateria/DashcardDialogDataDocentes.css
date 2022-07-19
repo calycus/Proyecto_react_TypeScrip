@@ -1,0 +1,96 @@
+.NameDocente {
+    font-weight: 700 !important;
+    text-align: center !important;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+}
+
+.DashcarDialog {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 30% auto;
+    grid-template-rows: auto;
+    padding: .5rem;
+}
+
+.TitleGraphic {
+    display: flex;
+    flex-wrap: wrap;
+    color: #004600;
+    font-weight: 600;
+    font-size: 15px;
+    padding: .5rem;
+    align-items: center;
+    justify-content: center;
+    font-family: Roboto, -apple-system, Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+.DataFija {
+    font-size: 14px;
+    font-weight: 700;
+    text-align: left;
+}
+
+.DataDinamica {
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: .03333em;
+    line-height: 1.25rem;
+    text-align: right;
+}
+
+.AlingDataPersonal {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.AlingDataContacto {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.ListNumeros {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    align-items: flex-end;
+    flex-direction: column;
+}
+
+.DataDocenteRepitencia {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    padding: 2rem 1rem !important;
+}
+
+.HightChartContainer{
+    text-align: -webkit-center;
+}
+
+.Estudiantes {
+    color: #004600;
+    display: block;
+    font-size: 13px;
+}
+
+.cardDataRepitencia{
+    padding: 2rem 2rem 0rem !important;
+    text-align: center;
+   /*  padding-bottom: 0px !important; */
+}
+.cardContainer{
+    border-style: groove;
+    border-color: rgba(0, 0, 0, 0.3);
+    border-width: thin;
+}
+
+.dialogToolbarContainer{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}

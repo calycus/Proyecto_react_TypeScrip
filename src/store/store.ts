@@ -9,7 +9,7 @@ import PieFenomenosGeneral from './HighchartStore/DashboardGeneral/HighchartFeno
 
 //store Highchart DS Retencion
 import HighchartRetencion from './HighchartStore/DashboardRetencion/HighchartStoreRetencion'
-/* 
+
 //store Highchart DS Repitencia
 import HighchartRepitencia from './HighchartStore/DashboardRepitencia/TasaDeRepitencia/HighchartStoreRepitenciaGeneral'
 import HighchartRepitenciaColumnTop from './HighchartStore/DashboardRepitencia/TasaDeRepitencia/HighchartStoreRepitenciaColumnTopMaterias'
@@ -20,7 +20,7 @@ import HighchartStoreRepitenciaPorMateria from './HighchartStore/DashboardRepite
 import HighchartRepitenciaFactorEconomico from './HighchartStore/DashboardRepitencia/MetaData/HighchartRepitenciaFactorEconomico'
 import HighchartRepitenciaFactorEdnico from './HighchartStore/DashboardRepitencia/MetaData/HighchartRepitenciaFactorEdnico'
 import HighchartRepitenciaFactorGeografico from './HighchartStore/DashboardRepitencia/MetaData/HighchartRepitenciaFactorGeograficdo'
- */
+
 //store Highchart DS Desercion
 import HighchartDesercionGeneral from './HighchartStore/DashboardDesercion/TasaDeDesercion/HighchartDesercionGeneral'
 import HighchartDesercionGenerosEdadEmbarazo from './HighchartStore/DashboardDesercion/TasaDeDesercion/HighchartDesercionGenerosEdadEmbarazo'
@@ -44,18 +44,18 @@ export default configureStore({
 
     //store Highchart DS Retencion
     HighchartRetencion: HighchartRetencion,
-    /*
-      //store Highchart DS Repitencia
-      HighchartRepitencia: HighchartRepitencia,
-      HighchartRepitenciaColumnTop: HighchartRepitenciaColumnTop,
-      ////store Highchart DS Repitencia => Repitencia Por Materia
-      ListTableRepitenciaPorMateria: ListTableRepitenciaPorMateria,
-      HighchartStoreRepitenciaPorMateria: HighchartStoreRepitenciaPorMateria,
-      ////store Highchart DS Repitencia => Metadata
-      HighchartRepitenciaFactorEconomico: HighchartRepitenciaFactorEconomico,
-      HighchartRepitenciaFactorEdnico: HighchartRepitenciaFactorEdnico,
-      HighchartRepitenciaFactorGeografico: HighchartRepitenciaFactorGeografico,
-   */
+
+    //store Highchart DS Repitencia
+    HighchartRepitencia: HighchartRepitencia,
+    HighchartRepitenciaColumnTop: HighchartRepitenciaColumnTop,
+    ////store Highchart DS Repitencia => Repitencia Por Materia
+    ListTableRepitenciaPorMateria: ListTableRepitenciaPorMateria,
+    HighchartStoreRepitenciaPorMateria: HighchartStoreRepitenciaPorMateria,
+    ////store Highchart DS Repitencia => Metadata
+    HighchartRepitenciaFactorEconomico: HighchartRepitenciaFactorEconomico,
+    HighchartRepitenciaFactorEdnico: HighchartRepitenciaFactorEdnico,
+    HighchartRepitenciaFactorGeografico: HighchartRepitenciaFactorGeografico,
+
     //store Highchart DS Desercion
     HighchartDesercionGeneral: HighchartDesercionGeneral,
     HighchartDesercionGenerosEdadEmbarazo: HighchartDesercionGenerosEdadEmbarazo,

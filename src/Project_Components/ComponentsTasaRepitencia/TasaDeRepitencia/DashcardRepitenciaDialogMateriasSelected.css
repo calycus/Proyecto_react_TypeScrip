@@ -1,0 +1,53 @@
+.css-1t1j96h-MuiPaper-root-MuiDialog-paper {
+    max-width: none !important;
+}
+
+.cardInscriocionesPorPeriodo {
+    padding: 10px;
+    border-style: groove;
+    border-color: rgba(0, 0, 0, 0.3);
+    border-width: thin;
+    min-width: 350px;
+}
+
+.dialogCloseIcon {
+    display: flex !important;
+    justify-content: flex-end !important;
+    padding: 10px 10px 0px 10px !important;
+}
+
+.TitelCardDialog {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+}
+
+.dialogDivContents {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.dialogTitelListText {
+    display: flex;
+    flex-grow: 1;
+    padding-left: 15px !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    color: #004600;
+
+}
+
+.dialogListText {
+    display: flex;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+
+}
+
+.dialogListRepitencia {
+    padding-left: 35px !important;
+    padding-top: 10px !important;
+}

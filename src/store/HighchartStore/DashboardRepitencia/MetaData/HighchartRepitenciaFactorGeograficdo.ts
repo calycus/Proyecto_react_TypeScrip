@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { arrayRepitenciaPorGeografia, ColumnRepitenciaFactorGeografico } from "../../../../models/repitencia/metaDataRepitencia";
 import ApiUrl from '../../../ApiUrl';
 
 export const traerInfo = createSlice({
@@ -15,7 +16,7 @@ export const traerInfo = createSlice({
                     data: [],
                 },
             ],
-        },
+        } as ColumnRepitenciaFactorGeografico,
 
     },
 
@@ -29,11 +30,11 @@ export const traerInfo = createSlice({
 
             state.ColumnFactorGeografico.series[0].data = [];
             state.ColumnFactorGeografico.categories = [];
-            
-            state.TotAlumnosGeografico = data.tot_alumnos_perdieron_1_vez;
+
+            state.ColumnFactorGeografico.TotAlumnosGeografico = data.tot_alumnos_perdieron_1_vez;
 
             arrayEstadisticaRepeticionPorFactorGeografico.forEach(
-                (elementoFactorGeografico) => {
+                (elementoFactorGeografico: arrayRepitenciaPorGeografia) => {
                     if (
                         arrayEstadisticaRepeticionPorFactorGeografico.length >
                         10 &&
@@ -49,8 +50,8 @@ export const traerInfo = createSlice({
                     state.ColumnFactorGeografico.series[0].data.push({
                         name: elementoFactorGeografico.canton,
                         label: elementoFactorGeografico.canton,
-                        y: parseFloat(elementoFactorGeografico.porcentaje),
-                        cantidad: parseInt(elementoFactorGeografico.cantidad),
+                        y: elementoFactorGeografico.porcentaje,
+                        cantidad: elementoFactorGeografico.cantidad,
                     });
                 }
             );
@@ -59,7 +60,7 @@ export const traerInfo = createSlice({
     }
 })
 
-export const traerInfoRPColumnFactorGeograficoAsync = (id_Malla) => (dispatch) => {
+export const traerInfoRPColumnFactorGeograficoAsync = (id_Malla: number) => (dispatch: any) => {
     axios.get(ApiUrl.Api + '/api/educacion/tasa_repitencia/metadatos/factor_geografico/' + id_Malla, {
         headers: {
             Authorization: "Bearer " + ApiUrl.userToken,
@@ -73,5 +74,5 @@ export const traerInfoRPColumnFactorGeograficoAsync = (id_Malla) => (dispatch) =
 
 
 export const { setInfoFactorGeografico } = traerInfo.actions;
-export const selectColumnFactorGeografico = (state) => state.HighchartRepitenciaFactorGeografico.ColumnFactorGeografico;
+export const selectColumnFactorGeografico = (state: any) => state.HighchartRepitenciaFactorGeografico.ColumnFactorGeografico;
 export default traerInfo.reducer;

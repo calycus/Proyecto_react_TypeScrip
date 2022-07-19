@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 //dependencias he importacion para el select
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 import SearchIcon from '@mui/icons-material/Search';
-import { Button, IconButton, OutlinedInput, Chip, Box } from '@mui/material';
+import { IconButton, OutlinedInput, Chip, Box } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
@@ -19,7 +19,7 @@ import { traerInfoGeneralAsync } from '../store/HighchartStore/DashboardGeneral/
 
 ///Retencion
 import { traerInfoRetencionAsync } from '../store/HighchartStore/DashboardRetencion/HighchartStoreRetencion'
-/*
+
 ///Repitencia
 import { traerInfoRepitenciaAsync, setArrayPeriodosDeInteres } from '../store/HighchartStore/DashboardRepitencia/TasaDeRepitencia/HighchartStoreRepitenciaGeneral';
 import { traerInfoRepitenciaColumnTopAsync } from '../store/HighchartStore/DashboardRepitencia/TasaDeRepitencia/HighchartStoreRepitenciaColumnTopMaterias';
@@ -29,7 +29,7 @@ import { traerInfoRepitenciaPorMateriasAsync } from '../store/HighchartStore/Das
 import { traerInfoRPPieFactorEconomicoAsync } from '../store/HighchartStore/DashboardRepitencia/MetaData/HighchartRepitenciaFactorEconomico';
 import { traerInfoRPColumnFactorEdnicoAsync } from '../store/HighchartStore/DashboardRepitencia/MetaData/HighchartRepitenciaFactorEdnico';
 import { traerInfoRPColumnFactorGeograficoAsync } from '../store/HighchartStore/DashboardRepitencia/MetaData/HighchartRepitenciaFactorGeograficdo';
-*/
+
 ///Desercion
 import { traerInfoLineDesertoresAsync } from '../store/HighchartStore/DashboardDesercion/TasaDeDesercion/HighchartDesercionGeneral'
 import { traerInfoesercionGenerosEdadEmbarazoAsync } from '../store/HighchartStore/DashboardDesercion/TasaDeDesercion/HighchartDesercionGenerosEdadEmbarazo'
@@ -72,7 +72,6 @@ interface Metodologia {
     id: number
 }
 
-
 //funcion encargada de traer las los datos del store
 function UseSelectAll() {
     const id_escuela: number = useSelector(selectIdEscuela);
@@ -84,7 +83,6 @@ function UseSelectAll() {
     }
 }
 
-
 //Funcion encargada de asignar un estilo nuevo a las opciones seleccionadas en el multi select
 function getStyles(id: number, PeriodosDeInteres: Periodo[], theme: Theme) {
     return {
@@ -95,10 +93,8 @@ function getStyles(id: number, PeriodosDeInteres: Periodo[], theme: Theme) {
     };
 }
 
-
 //funciones que devuelven los diferentes selects usados en el dashboard
 function CardSelectMalla(props: Malla[]) {
-
 
     mallaAux = UseSelectAll();
     theme = useTheme();
@@ -121,10 +117,9 @@ function CardSelectMalla(props: Malla[]) {
         },
     };
 
-
     //Constantes de tipo evento encargadas de supervisar lo que pasa con los diferentes selects
-    const SelectMalla = (event: any) => {
-        newIdMalla = event.target.value;
+    const SelectMalla = (event: SelectChangeEvent<number>) => {
+        newIdMalla = event.target.value as number;
         let array = [] as Periodo[];
         let sendData = {
             newIdMalla: newIdMalla,
@@ -137,8 +132,10 @@ function CardSelectMalla(props: Malla[]) {
         setPeriodosDeInteres(array)
         SelectPeriodos();
     };
-    const SelectMultiPeriodos = (event: any) => {
-        arrayDePeriodosSeleccionados = event.target.value
+
+    const SelectMultiPeriodos = (event: SelectChangeEvent<string[]>) => {
+        arrayDePeriodosSeleccionados = (event.target.value as string[]).map((data) => JSON.parse(data))
+
         if (arrayDePeriodosSeleccionados.length > 4) {
             return
         } else {
@@ -170,22 +167,25 @@ function CardSelectMalla(props: Malla[]) {
                         labelId="demo-multiple-chip-label"
                         id="demo-multiple-chip"
                         multiple
-                        value={PeriodosDeInteres}
+                        value={PeriodosDeInteres.map((periodo) => JSON.stringify(periodo))}
                         onChange={SelectMultiPeriodos}
                         input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
                         renderValue={(selected) => (
                             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                                {selected.map((value) => (
-                                    <Chip key={value.id} label={value.abreviatura} />
-                                ))}
+                                {selected.map((value: string) => {
+                                    let periodo = JSON.parse(value) as Periodo
+                                    return (
+                                        <Chip key={periodo.id} label={periodo.abreviatura} />
+                                    )
+                                })}
                             </Box>
                         )}
                         MenuProps={MenuProps}
                     >
-                        {ArrayPeriodos.map((periodos:Periodo) => (
+                        {ArrayPeriodos.map((periodos: Periodo) => (
                             <MenuItem
                                 key={periodos.id}
-                                value={periodos.id}
+                                value={JSON.stringify(periodos)}
                                 style={getStyles(periodos.id, PeriodosDeInteres, theme)}
                             >
                                 {periodos.abreviatura}
@@ -206,10 +206,10 @@ function CardSelectMalla(props: Malla[]) {
                         input={<OutlinedInput id="select-simple-chip" label="Chip" />}
                         MenuProps={MenuProps}
                     >
-                        {ArrayPeriodos.map((periodos:Periodo) => (
+                        {ArrayPeriodos.map((periodos: Periodo) => (
                             <MenuItem
                                 key={periodos.id}
-                                value={periodos.id}
+                                value={JSON.stringify(periodos)}
                                 style={getStyles(periodos.id, PeriodosDeInteres, theme)}
                             >
                                 {periodos.nombre}
@@ -230,7 +230,7 @@ function CardSelectMalla(props: Malla[]) {
                         input={<OutlinedInput id="select-simple-chip" label="Chip" />}
                         MenuProps={MenuProps}
                     >
-                        {Metodologia.map((metodologia:Metodologia) => (
+                        {Metodologia.map((metodologia: Metodologia) => (
                             <MenuItem
                                 key={metodologia.id}
                                 value={metodologia.id}
@@ -246,7 +246,6 @@ function CardSelectMalla(props: Malla[]) {
         return SelectReturn
     }
 
-
     return (
         <React.Fragment>
             <FormControl sx={{ m: 1 }} size="small">
@@ -258,7 +257,7 @@ function CardSelectMalla(props: Malla[]) {
                     label="id"
                     onChange={SelectMalla}
                 >
-                    {props.map((malla, index) => <MenuItem key={malla.id} value={malla.id}>{
+                    {props.map((malla) => <MenuItem key={malla.id} value={malla.id}>{
                         malla.nombre
                     }</MenuItem>)}
                 </Select>
@@ -285,7 +284,7 @@ const SearchButton = ({ dispatch, sampleLocation, PeriodosDeInteres, PeriodoSele
     } else if (sampleLocation.pathname == "/tasa_retencion") {
         dispatch(traerInfoRetencionAsync(mallaAux.idMalla))
 
-    } /* else if (sampleLocation.pathname == "/tasa_repitencia") {
+    } else if (sampleLocation.pathname == "/tasa_repitencia") {
         if (PeriodosDeInteres.length == 0) {
             return
         } else {
@@ -293,24 +292,22 @@ const SearchButton = ({ dispatch, sampleLocation, PeriodosDeInteres, PeriodoSele
             dispatch(traerInfoRepitenciaColumnTopAsync(mallaAux.idMalla))
             dispatch(setArrayPeriodosDeInteres(arrayDePeriodosSeleccionados))
         }
-
     } else if (sampleLocation.pathname == "/tasa_repitencia_por_materia") {
-        if (PeriodoSelected.length == "") {
+        if (PeriodoSelected === -1) {
             return
         } else {
-            dispatch(traerInfoRepitenciaPorMateriasAsync(mallaAux.idMalla, PeriodoSelected.id))
+            dispatch(traerInfoRepitenciaPorMateriasAsync(mallaAux.idMalla, PeriodoSelected))
         }
     } else if (sampleLocation.pathname == "/tasa_repitencia_metadata") {
         dispatch(traerInfoRPPieFactorEconomicoAsync(mallaAux.idMalla))
         dispatch(traerInfoRPColumnFactorEdnicoAsync(mallaAux.idMalla))
         dispatch(traerInfoRPColumnFactorGeograficoAsync(mallaAux.idMalla))
-
-    }*/ else if (sampleLocation.pathname == "/tasa_desercion") {
+    } else if (sampleLocation.pathname == "/tasa_desercion") {
         dispatch(traerInfoLineDesertoresAsync(mallaAux.idMalla))
         dispatch(traerInfoesercionGenerosEdadEmbarazoAsync(mallaAux.idMalla))
 
     } else if (sampleLocation.pathname == "/tasa_desercion_prediccion") {
-        if (PeriodoSelected == -1) {
+        if (PeriodoSelected === -1) {
             return
         } else {
             dispatch(traerListaPosiblesDesertoresAsync(mallaAux.idMalla, PeriodoSelected))

@@ -1,0 +1,91 @@
+/* :root {
+    --gridColumn: " ";
+} */
+
+.BoxDocentesContainer {
+    display: grid;
+    /* justify-content: center; */
+    align-items: stretch;
+    align-content: stretch;
+    grid-template-columns: repeat(auto-fit, minmax(100px, calc(50% - 0.5rem)));
+    grid-template-rows: auto;
+    gap: 1rem;
+    height: 100%;
+    /* max-height: 25rem !important; */
+}
+
+.CardDocentes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+    min-height: 130px;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+    
+    border-style: groove;
+    border-color: rgba(0, 0, 0, 0.1);
+    border-width: thin;
+}
+
+.wellDashCard {
+    padding: 1rem 2rem 0;
+    text-align: center;
+}
+
+.TextDashcard {
+    color: #000;
+    display: block;
+    font-size: 40px;
+    font-style: normal;
+    line-height: 48px;
+}
+
+.TextDashcardReprobados {
+    color: #004600;
+    display: block;
+    font-size: 12px;
+}
+
+.dashCardHeading {
+    margin-bottom: 3px;
+    color: #004600;
+    font-weight: bold;
+    font-size: 15px;
+    border-bottom: 1px solid #000000;
+}
+
+.dashCardContainer {
+    min-width: 70%;
+    max-width: 100%;
+    min-height: 70%;
+    max-height: 100%;
+}
+
+.TituloDialogRepitenciDocentes {
+    font-size: 21px !important;
+    font-weight: 700 !important;
+    letter-spacing: .01em !important;
+    font-family: Roboto,-apple-system,Helvetica Neue,Helvetica,Arial,sans-serif !important;
+    white-space: nowrap !important;
+
+}
+
+/* 
+:style="{
+            'grid-column':
+                docentes.length % 2 > 0 && index == docentes.length - 1
+                    ? 'span 2'
+                    : 'span 1',
+            }"
+            class="
+            full-width
+            row
+            wrap
+            justify-around
+            items-center
+            content-center
+            "
+*/

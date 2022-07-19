@@ -7,10 +7,9 @@ import Dashboard_General from '../Dashboard_Page/DsGeneral/Dashboard_General';
 //Tasa de Retencion
 import Dashboard_Tasa_Retencion from '../Dashboard_Page/DsRetencion/Dashboard_Retencion';
 //Tasa de Repitencia
-/*import Dashboard_Tasa_Repitencia from '../Dashboard_Page/DsRepitencia/TasaDeRepitencia/Dashboard_Repitencia';
+import Dashboard_Tasa_Repitencia from '../Dashboard_Page/DsRepitencia/TasaDeRepitencia/Dashboard_Repitencia';
 import Dashboard_Repitencia_Por_Materia from '../Dashboard_Page/DsRepitencia/RepitenciaPorMateria/Dashboard_Repitencia_Por_Materia'
 import Dashboard_Tasa_Repitencia_MetaData from '../Dashboard_Page/DsRepitencia/Metadata/Metadata_Repitencia';
-*/
 //Tasa de Desercion
 import Dashboard_Tasa_Desercion from '../Dashboard_Page/DsDesercion/TasaDeDesercion/Dashboard_Desercion';
 import Dashboard_Tasa_Desercion_Prediccion from '../Dashboard_Page/DsDesercion/Prediccion/Dashboard_Desercion_Prediccion';
@@ -28,7 +27,7 @@ const SwitchDrawer = () => {
             <Route path='/tasa_retencion' element={
                 <Dashboard_Tasa_Retencion />
             } />
-            {/*  <Route path='/tasa_repitencia' element={
+            <Route path='/tasa_repitencia' element={
                 <Dashboard_Tasa_Repitencia />
             } />  
             <Route path='/tasa_repitencia_por_materia' element={
@@ -36,7 +35,7 @@ const SwitchDrawer = () => {
             } />  
             <Route path='/tasa_repitencia_metadata' element={
                 <Dashboard_Tasa_Repitencia_MetaData />
-            } /> */}
+            } /> 
             <Route path='/tasa_desercion' element={
                 <Dashboard_Tasa_Desercion />
             } />

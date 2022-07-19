@@ -3,21 +3,22 @@ import axios from "axios";
 import ApiUrl from '../../../ApiUrl';
 import Highcharts from "highcharts";
 import HighchartColumnTopMateriasMayorIncidencia from "../../../../Project_Components/HighchartsComponent/HighchartsRepitencia/TasaDeRepitencia/HighchartColumnTopMateriasMayorIncidencia";
+import { materiasMayorIncidencia } from "../../../../models/repitencia/dashboardRepitencia";
+
 
 export const traerInfo = createSlice({
     name: 'HighchartRepitenciaColumnTop',
     initialState: {
-        array_Top_Materias_Mayor_Incidencia: [],
-        antepenultimo_Periodo: "",
-        penultimo_Periodo: "",
-        arrayColumnasGraficoComparativo: [],
+        antepenultimo_Periodo: "" as string,
+        penultimo_Periodo: "" as string,
+        arrayColumnasGraficoComparativo: [] as any,
     },
 
     reducers: {
         setTopMateriasMayorIncidencia: (state, action) => {
 
             let data = action.payload;
-            let newOpcionGraphic = HighchartColumnTopMateriasMayorIncidencia
+            let newOpcionGraphic: any = HighchartColumnTopMateriasMayorIncidencia
 
             let antepenultimoPeriodo = data.antepenultimo_periodo;
             let antepenultimoPeriodoAbreviatura = data.antepenultimo_periodo.abreviatura;
@@ -34,8 +35,8 @@ export const traerInfo = createSlice({
             newOpcionGraphic.series[1].data = []
 
             //el series[0] es el antepenultimo periodo
-            state.arrayColumnasGraficoComparativo[antepenultimoPeriodo.id].forEach(
-                (elementoColumna) => {
+            state.arrayColumnasGraficoComparativo[antepenultimoPeriodo.id].map(
+                (elementoColumna:materiasMayorIncidencia) => {
                     /* console.log(antepenultimoPeriodoAbreviatura); */
                     newOpcionGraphic.series[0].data.push(
                         {
@@ -48,8 +49,8 @@ export const traerInfo = createSlice({
                 }
             );
             //el series[1] es el penultimo periodo
-            state.arrayColumnasGraficoComparativo[penultimoPeriodo.id].forEach(
-                (elementoColumna) => {
+            state.arrayColumnasGraficoComparativo[penultimoPeriodo.id].map(
+                (elementoColumna:materiasMayorIncidencia) => {
                     newOpcionGraphic.series[1].data.push(
                         {
                             abreviatura: penultimoPeriodoAbreviatura,
@@ -66,7 +67,7 @@ export const traerInfo = createSlice({
     }
 })
 
-export const traerInfoRepitenciaColumnTopAsync = (id_Malla) => (dispatch) => {
+export const traerInfoRepitenciaColumnTopAsync = (id_Malla: number) => (dispatch: any) => {
     axios.get(ApiUrl.Api + '/api/educacion/tasa_repitencia/principal/comparacion_periodos/' + id_Malla, {
         headers: {
             Authorization: "Bearer " + ApiUrl.userToken,
@@ -79,6 +80,6 @@ export const traerInfoRepitenciaColumnTopAsync = (id_Malla) => (dispatch) => {
 
 
 export const { setTopMateriasMayorIncidencia } = traerInfo.actions;
-export const selectTopMateriasSeries = (state) => state.HighchartRepitenciaColumnTop.series;
+export const selectTopMateriasSeries = (state: any) => state.HighchartRepitenciaColumnTop.series;
 
 export default traerInfo.reducer;

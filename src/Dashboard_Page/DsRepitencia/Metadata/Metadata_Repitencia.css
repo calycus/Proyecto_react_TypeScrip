@@ -1,0 +1,31 @@
+/* css que controla el contenido del box (cardSelect y cardUp & cardDown)*/
+.cardGridSelectRepitenciaMetaData {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: auto;
+    gap: 1rem;
+    padding: 1rem 1rem 0rem 1rem;
+}
+
+.cardGridUpRepitenciaMetaData {
+    display: grid;
+    grid-template-columns: 40% auto;
+    grid-template-rows: auto;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.cardGridDownRepitenciaMetaData {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: auto;
+    gap: 1rem;
+    padding: 0.5rem 1rem 0rem 1rem;
+}
+
+
+
+/* css que controla el contenido de todos los card*/
+
+
+
